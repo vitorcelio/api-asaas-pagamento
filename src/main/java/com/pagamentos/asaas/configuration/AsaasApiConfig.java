@@ -5,25 +5,25 @@ import lombok.Setter;
 
 public class AsaasApiConfig {
 
-    private static VersaoApi versao = VersaoApi.V_3;
-    private static Boolean isSandbox = Boolean.TRUE;
-    private static String baseDominioSandbox = "https://sandbox.asaas.com/api/%s/payments/";
-    private static String baseDominio = "https://asaas.com/api/%s/payments/";
+    private static VersionApi version = VersionApi.V_3;
+    private static boolean isSandbox = true;
+    private static final String domainSandbox = "https://sandbox.asaas.com/api/%s/payments/";
+    private static final String domain = "https://asaas.com/api/%s/payments/";
 
     @Setter
     @Getter
     private static String apiKey;
 
-    public static void setVersao(VersaoApi versao) {
-        AsaasApiConfig.versao = versao;
+    public static void setVersion(VersionApi version) {
+        AsaasApiConfig.version = version;
     }
 
-    public static void setIsSandbox(Boolean isSandbox) {
+    public static void setIsSandbox(boolean isSandbox) {
         AsaasApiConfig.isSandbox = isSandbox;
     }
 
-    public static String getBaseDominio() {
-        return String.format(isSandbox ? baseDominioSandbox : baseDominio, versao.getVersao());
+    public static String BASE_URL() {
+        return String.format(isSandbox ? domainSandbox : domain, version.getVersao());
     }
 
 }

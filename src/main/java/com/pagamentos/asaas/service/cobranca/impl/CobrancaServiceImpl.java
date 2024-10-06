@@ -1,4 +1,6 @@
 package com.pagamentos.asaas.service.cobranca.impl;
 
-public class CobrancaServiceImpl {
+import com.pagamentos.asaas.service.cobranca.CobrancaService;
+
+public class CobrancaServiceImpl implements CobrancaService {
 }

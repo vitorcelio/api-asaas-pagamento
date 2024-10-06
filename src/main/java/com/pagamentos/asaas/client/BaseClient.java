@@ -20,7 +20,7 @@ public class BaseClient {
     @SneakyThrows
     public static String getRequest(String service, String... params) {
 
-        var uri = new URI(AsaasApiConfig.getBaseDominio() + service);
+        var uri = new URI(AsaasApiConfig.BASE_URL() + service);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -39,7 +39,7 @@ public class BaseClient {
     public static String postRequest(String service, String json, String... params) {
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(AsaasApiConfig.getBaseDominio() + service))
+                .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
@@ -56,7 +56,7 @@ public class BaseClient {
     public static String putRequest(String service, String json, String... params) {
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(AsaasApiConfig.getBaseDominio() + service))
+                .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
@@ -73,7 +73,7 @@ public class BaseClient {
     public static String deleteRequest(String service, String... params) {
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(AsaasApiConfig.getBaseDominio() + service))
+                .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
