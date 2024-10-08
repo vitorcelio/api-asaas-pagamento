@@ -24,7 +24,7 @@ public interface PaymentService {
 
     PaymentResponseDTO capturePaymentPreAuthorization(@NonNull String id);
 
-    PaymentResponseDTO payWithCreditCard(@NonNull String id, @NonNull CreditCardRequestDTO request);
+    PaymentResponseDTO payWithCreditCard(@NonNull String id, @NonNull PaymentRequestDTO request);
 
     PaymentBillingInfoResponseDTO retrievePaymentBillingInfo(@NonNull String id);
 

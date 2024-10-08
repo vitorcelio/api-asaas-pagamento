@@ -13,14 +13,10 @@ import java.util.List;
 @Builder
 public class PaymentRequestDTO {
 
-    @NonNull
     private String customer;
-    @NonNull
     private BillingType billingType;
-    @NonNull
     private BigDecimal value;
-    @NonNull
-    private Date dueDate;
+    private String dueDate;
     private String description;
     private int daysAfterDueDateToRegistrationCancellation;
     private String externalReference;

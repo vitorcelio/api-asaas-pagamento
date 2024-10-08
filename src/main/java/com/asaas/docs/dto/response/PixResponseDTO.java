@@ -13,6 +13,6 @@ public class PixResponseDTO {
 
     private String encodedImage;
     private String payload;
-    private LocalDateTime expirationDate;
+    private String expirationDate;
 
 }

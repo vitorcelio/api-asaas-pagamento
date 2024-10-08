@@ -1,6 +1,10 @@
 package com.asaas.docs.client;
 
 import com.asaas.docs.configuration.AsaasApiConfig;
+import com.asaas.docs.exception.AsaasApiException;
+import com.asaas.docs.exception.AsaasErrorResponse;
+import com.asaas.docs.util.AsaasUtil;
+import com.google.gson.Gson;
 import lombok.SneakyThrows;
 
 import java.net.URI;
@@ -16,6 +20,8 @@ public class BaseClient {
             .version(HttpClient.Version.HTTP_2)
             .connectTimeout(Duration.ofSeconds(10))
             .build();
+
+    private static final Gson gson = new Gson();
 
     @SneakyThrows
     public static String getRequest(String service, String query) {
@@ -48,6 +54,13 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        if(response.statusCode() != 200 && response.statusCode() != 201) {
+            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                throw new AsaasApiException(errorResponse);
+            }
+        }
+
         return response.body();
     }
 
@@ -64,6 +77,13 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        if(response.statusCode() != 200 && response.statusCode() != 201) {
+            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                throw new AsaasApiException(errorResponse);
+            }
+        }
+
         return response.body();
     }
 
@@ -79,6 +99,13 @@ public class BaseClient {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if(response.statusCode() != 200 && response.statusCode() != 201) {
+            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                throw new AsaasApiException(errorResponse);
+            }
+        }
 
         return response.body();
     }

@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 public class PaymentReceiptCashRequestDTO {
 
-    private Date paymentDate;
+    private String paymentDate;
     private BigDecimal value;
     private boolean notifyCustomer;
 

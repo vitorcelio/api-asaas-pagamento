@@ -4,6 +4,8 @@ import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
 
+import java.util.Collection;
+
 public class AsaasUtil {
 
     // TODO Payments
@@ -216,6 +218,10 @@ public class AsaasUtil {
 
     public static boolean isEmpty(String string) {
         return string == null || string.isEmpty();
+    }
+
+    public static boolean isEmpty(Collection collection) {
+        return collection == null || collection.isEmpty();
     }
 
 }

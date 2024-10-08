@@ -7,14 +7,16 @@ import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
 import com.asaas.docs.exception.AsaasApiException;
+import com.asaas.docs.exception.AsaasErrorResponse;
 import com.asaas.docs.service.payment.PaymentService;
 import com.asaas.docs.util.AsaasUtil;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.NonNull;
 
 public class PaymentServiceImpl implements PaymentService {
 
-    private final Gson gson = new Gson();
+    private Gson gson = new Gson();
 
     @Override
     public PaymentResponseDTO createPayment(@NonNull PaymentRequestDTO request) {
@@ -65,7 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentResponseDTO payWithCreditCard(@NonNull String id, @NonNull CreditCardRequestDTO request) {
+    public PaymentResponseDTO payWithCreditCard(@NonNull String id, @NonNull PaymentRequestDTO request) {
 
         try {
             String response = BaseClient.postRequest(String.format(AsaasUtil.PAY_WITH_CREDIT_CARD, id),
@@ -165,6 +167,7 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentResponseDTO refundPayment(@NonNull String id, @NonNull PaymentRefundRequestDTO request) {
 
         try {
+            gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
             String response = BaseClient.postRequest(String.format(AsaasUtil.REFUND_PAYMENT, id), gson.toJson(request));
             return gson.fromJson(response, PaymentResponseDTO.class);
         } catch (Exception e) {

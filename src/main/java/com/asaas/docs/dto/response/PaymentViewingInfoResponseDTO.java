@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PaymentViewingInfoResponseDTO {
 
-    private LocalDateTime invoiceViewedDate;
-    private LocalDateTime boletoViewedDate;
+    private String invoiceViewedDate;
+    private String boletoViewedDate;
 
 }

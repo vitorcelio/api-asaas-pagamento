@@ -18,8 +18,8 @@ public class PaymentResponseDTO {
     private String object;
     private String id;
     private String customer;
-    private Date dateCreated;
-    private Date dueDate;
+    private String dateCreated;
+    private String dueDate;
     private String installment;
     private String subscription;
     private String paymentLink;
@@ -35,9 +35,9 @@ public class PaymentResponseDTO {
     private String pixQrCodeId;
     private BigDecimal originalValue;
     private BigDecimal interestValue;
-    private Date originalDueDate;
-    private Date paymentDate;
-    private Date clientPaymentDate;
+    private String originalDueDate;
+    private String paymentDate;
+    private String clientPaymentDate;
     private int installmentNumber;
     private String transactionReceiptUrl;
     private String nossoNumero;
