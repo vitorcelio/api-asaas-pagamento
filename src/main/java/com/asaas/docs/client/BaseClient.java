@@ -18,32 +18,31 @@ public class BaseClient {
             .build();
 
     @SneakyThrows
-    public static String getRequest(String service, String... params) {
+    public static String getRequest(String service, String query) {
 
-        var uri = new URI(AsaasApiConfig.BASE_URL() + service);
+        var uri = new URI(AsaasApiConfig.BASE_URL() + service + (query != null ? query : ""));
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
-                .header("Authorization", AsaasApiConfig.getApiKey())
-                .headers(params)
+                .header("access_token", AsaasApiConfig.getApiKey())
                 .GET()
                 .build();
+
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
 
     @SneakyThrows
-    public static String postRequest(String service, String json, String... params) {
+    public static String postRequest(String service, String json) {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
-                .headers(params)
                 .POST(HttpRequest.BodyPublishers.ofString(json != null ? json : "{}", StandardCharsets.UTF_8))
                 .build();
 
@@ -53,14 +52,13 @@ public class BaseClient {
     }
 
     @SneakyThrows
-    public static String putRequest(String service, String json, String... params) {
+    public static String putRequest(String service, String json) {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
-                .headers(params)
                 .PUT(HttpRequest.BodyPublishers.ofString(json != null ? json : "{}", StandardCharsets.UTF_8))
                 .build();
 
@@ -70,14 +68,13 @@ public class BaseClient {
     }
 
     @SneakyThrows
-    public static String deleteRequest(String service, String... params) {
+    public static String deleteRequest(String service) {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(AsaasApiConfig.BASE_URL() + service))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("access_token", AsaasApiConfig.getApiKey())
-                .headers(params)
                 .DELETE()
                 .build();
 

@@ -7,22 +7,20 @@ import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
 import lombok.NonNull;
 
-import java.util.List;
-
 public interface PaymentService {
 
 
     PaymentResponseDTO createPayment(@NonNull PaymentRequestDTO request);
 
 
-    List<PaymentResponseDTO> paymentsList(String installment, int offset, int limit, String customer,
-                                          String customerGroupName, BillingType billingType, StatusPayment status,
-                                          String subscription, String externalReference, String paymentDate,
-                                          StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
-                                          boolean anticipated, boolean anticipable, String dateCreatedGe,
-                                          String dateCreatedLe, String estimatedCreditDateGe,
-                                          String estimatedCreditDateLe,
-                                          String dueDataGe, String dueDateLe, String user);
+    PaymentListResponseDTO paymentsList(String installment, Integer offset, Integer limit, String customer,
+                                        String customerGroupName, BillingType billingType, StatusPayment status,
+                                        String subscription, String externalReference, String paymentDate,
+                                        StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
+                                        Boolean anticipated, Boolean anticipable, String dateCreatedGe,
+                                        String dateCreatedLe, String estimatedCreditDateGe,
+                                        String estimatedCreditDateLe,
+                                        String dueDataGe, String dueDateLe, String user);
 
     PaymentResponseDTO capturePaymentPreAuthorization(@NonNull String id);
 

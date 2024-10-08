@@ -7,8 +7,8 @@ public class AsaasApiConfig {
 
     private static VersionApi version = VersionApi.V_3;
     private static boolean isSandbox = true;
-    private static final String domainSandbox = "https://sandbox.asaas.com/api/%s/payments/";
-    private static final String domain = "https://asaas.com/api/%s/payments/";
+    private static final String domainSandbox = "https://sandbox.asaas.com/api/%s/";
+    private static final String domain = "https://asaas.com/api/%s/";
 
     @Setter
     @Getter
