@@ -4,6 +4,7 @@ import com.asaas.docs.client.BaseClient;
 import com.asaas.docs.dto.request.PaymentReceiptCashRequestDTO;
 import com.asaas.docs.dto.request.PaymentRequestDTO;
 import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
+import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
@@ -86,11 +87,11 @@ public class PaymentSummaryServiceImpl implements PaymentSummaryService {
     }
 
     @Override
-    public PaymentSummaryResponseDTO deleteSummaryPayment(@NonNull String id) {
+    public PaymentDeleteResponseDTO deleteSummaryPayment(@NonNull String id) {
 
         try {
             String response = BaseClient.deleteRequest(String.format(AsaasUtil.DELETE_SUMMARY_PAYMENT, id));
-            return gson.fromJson(response, PaymentSummaryResponseDTO.class);
+            return gson.fromJson(response, PaymentDeleteResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
         }
