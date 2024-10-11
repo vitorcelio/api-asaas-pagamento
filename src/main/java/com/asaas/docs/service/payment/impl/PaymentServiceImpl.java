@@ -7,7 +7,6 @@ import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
 import com.asaas.docs.exception.AsaasApiException;
-import com.asaas.docs.exception.AsaasErrorResponse;
 import com.asaas.docs.service.payment.PaymentService;
 import com.asaas.docs.util.AsaasUtil;
 import com.google.gson.Gson;
@@ -16,7 +15,7 @@ import lombok.NonNull;
 
 public class PaymentServiceImpl implements PaymentService {
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @Override
     public PaymentResponseDTO createPayment(@NonNull PaymentRequestDTO request) {

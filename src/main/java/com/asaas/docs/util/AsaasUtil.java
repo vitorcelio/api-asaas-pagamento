@@ -29,6 +29,18 @@ public class AsaasUtil {
     public static final String RECOVERING_PAYMENT_LIMITS = "payments/limits";
     public static final String GET_CHARGEBACK = "payments/%s/chargeback";
 
+    // TODO Payment Summary
+    public static final String CREATE_SUMMARY_PAYMENT = "lean/payments";
+    public static final String SUMMARY_LIST_PAYMENT = "lean/payments";
+    public static final String CAPTURE_SUMMARY_PAYMENT_PRE_AUTHORIZATION = "lean/payments/%s/captureAuthorizedPayment";
+    public static final String GET_SUMMARY_PAYMENT = "lean/payments/%s";
+    public static final String UPDATE_SUMMARY_PAYMENT = "lean/payments/%s";
+    public static final String DELETE_SUMMARY_PAYMENT = "lean/payments/%s";
+    public static final String RESTORE_SUMMARY_PAYMENT = "lean/payments/%s/restore";
+    public static final String REFUND_SUMMARY_PAYMENT = "lean/payments/%s/refund";
+    public static final String CONFIRM_CASH_RECEIPT_SUMMARY = "lean/payments/%s/receiveInCash";
+    public static final String UNDO_CASH_RECEIPT_SUMMARY = "lean/payments/%s/undoReceivedInCash";
+
 
     public static String getParamsList(String installment, Integer offset, Integer limit, String customer,
                                        String customerGroupName, BillingType billingType,
