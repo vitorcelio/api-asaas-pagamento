@@ -15,7 +15,7 @@ import lombok.NonNull;
 
 public class PaymentServiceImpl implements PaymentService {
 
-    private final Gson gson = new Gson();
+    private Gson gson = new Gson();
 
     @Override
     public PaymentResponseDTO createPayment(@NonNull PaymentRequestDTO request) {
