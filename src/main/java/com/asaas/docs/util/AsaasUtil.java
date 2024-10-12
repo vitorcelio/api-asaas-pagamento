@@ -41,6 +41,9 @@ public class AsaasUtil {
     public static final String CONFIRM_CASH_RECEIPT_SUMMARY = "lean/payments/%s/receiveInCash";
     public static final String UNDO_CASH_RECEIPT_SUMMARY = "lean/payments/%s/undoReceivedInCash";
 
+    // TODO CreditCard
+    public static final String TOKENIZE_CREDIT_CARD = "creditCard/tokenizeCreditCard";
+
 
     public static String getParamsList(String installment, Integer offset, Integer limit, String customer,
                                        String customerGroupName, BillingType billingType,
