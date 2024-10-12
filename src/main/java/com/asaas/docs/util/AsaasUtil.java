@@ -3,6 +3,7 @@ package com.asaas.docs.util;
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.StatusSplit;
 
 import java.util.Collection;
 
@@ -10,7 +11,7 @@ public class AsaasUtil {
 
     // TODO Payments
     public static final String CREATE_PAYMENT = "payments";
-    public static final String LIST_PAYMENT = "payments";
+    public static final String LIST_PAYMENTS = "payments";
     public static final String CAPTURE_PAYMENT_PRE_AUTHORIZE = "payments/%s/captureAuthorizedPayment";
     public static final String PAY_WITH_CREDIT_CARD = "payments/%s/payWithCreditCard";
     public static final String RETRIEVE_PAYMENT_BILLING_INFO = "payments/%s/billingInfo";
@@ -44,15 +45,24 @@ public class AsaasUtil {
     // TODO CreditCard
     public static final String TOKENIZE_CREDIT_CARD = "creditCard/tokenizeCreditCard";
 
+    // TODO Bank Slip
+    public static final String BANK_SLIP_REFUND = "payments/%s/bankSlip/refund";
 
-    public static String getParamsList(String installment, Integer offset, Integer limit, String customer,
-                                       String customerGroupName, BillingType billingType,
-                                       StatusPayment status, String subscription, String externalReference,
-                                       String paymentDate, StatusInvoice invoiceStatus,
-                                       String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
-                                       Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
-                                       String estimatedCreditDateGe, String estimatedCreditDateLe,
-                                       String dueDataGe, String dueDateLe, String user) {
+    // TODO Split
+    public static final String GET_SPLIT_PAID = "payments/splits/paid/%s";
+    public static final String LIST_SPLITS_PAID = "payments/splits/paid";
+    public static final String GET_SPLIT_RECEIVED = "payments/splits/received/%s";
+    public static final String LIST_SPLITS_RECEIVED = "payments/splits/received";
+
+
+    public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
+                                              String customerGroupName, BillingType billingType,
+                                              StatusPayment status, String subscription, String externalReference,
+                                              String paymentDate, StatusInvoice invoiceStatus,
+                                              String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
+                                              Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
+                                              String estimatedCreditDateGe, String estimatedCreditDateLe,
+                                              String dueDataGe, String dueDateLe, String user) {
 
         StringBuilder params = new StringBuilder();
 
@@ -227,6 +237,14 @@ public class AsaasUtil {
                 params.append("&user=").append(user);
             }
         }
+
+        return params.toString();
+    }
+
+    public static String getParamsListSplit(Integer offset, Integer limit, String paymentId, StatusSplit status,
+                                            String paymentConfirmedDateGe, String paymentConfirmedDateLe,
+                                            String creditDateGe, String creditDateLe) {
+        StringBuilder params = new StringBuilder();
 
         return params.toString();
     }

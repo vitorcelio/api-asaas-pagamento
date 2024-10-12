@@ -36,7 +36,7 @@ public class PaymentSummaryServiceImpl implements PaymentSummaryService {
     @Override
     public PaymentListSummaryResponseDTO summaryPaymentsList(String installment, Integer offset, Integer limit, String customer, String customerGroupName, BillingType billingType, StatusPayment status, String subscription, String externalReference, String paymentDate, StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId, Boolean anticipated, Boolean anticipable, String dateCreatedGe, String dateCreatedLe, String estimatedCreditDateGe, String estimatedCreditDateLe, String dueDataGe, String dueDateLe, String user) {
 
-        var query = AsaasUtil.getParamsList(installment, offset, limit, customer, customerGroupName, billingType,
+        var query = AsaasUtil.getParamsListPayment(installment, offset, limit, customer, customerGroupName, billingType,
                 status, subscription, externalReference, paymentDate, invoiceStatus, estimatedCreditDate, pixQrCodeId
                 , anticipated, anticipable, dateCreatedGe, dateCreatedLe, estimatedCreditDateGe,
                 estimatedCreditDateLe, dueDataGe, dueDateLe, user);

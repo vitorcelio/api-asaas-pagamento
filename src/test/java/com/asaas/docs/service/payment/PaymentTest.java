@@ -255,14 +255,14 @@ public class PaymentTest {
     public void testConfirmCashReceipt_Success() {
 
         PaymentReceiptCashRequestDTO request = PaymentReceiptCashRequestDTO.builder()
-                .paymentDate("2024-10-08")
-                .value(new BigDecimal("50.00"))
+                .paymentDate("2024-10-12")
+                .value(new BigDecimal("100.00"))
                 .build();
 
-        PaymentResponseDTO response = paymentService.confirmCashReceipt("pay_96ohwncugd20iivb", request);
+        PaymentResponseDTO response = paymentService.confirmCashReceipt("pay_4o023v5s2ugovmn0", request);
         assertEquals(PaymentResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
-        assertEquals("pay_96ohwncugd20iivb", response.getId());
+        assertEquals("pay_4o023v5s2ugovmn0", response.getId());
     }
 
     @Test

@@ -39,13 +39,13 @@ public class PaymentServiceImpl implements PaymentService {
                                                String estimatedCreditDateGe, String estimatedCreditDateLe,
                                                String dueDataGe, String dueDateLe, String user) {
 
-        var query = AsaasUtil.getParamsList(installment, offset, limit, customer, customerGroupName, billingType,
+        var query = AsaasUtil.getParamsListPayment(installment, offset, limit, customer, customerGroupName, billingType,
                 status, subscription, externalReference, paymentDate, invoiceStatus, estimatedCreditDate, pixQrCodeId
                 , anticipated, anticipable, dateCreatedGe, dateCreatedLe, estimatedCreditDateGe,
                 estimatedCreditDateLe, dueDataGe, dueDateLe, user);
 
         try {
-            String response = BaseClient.getRequest(AsaasUtil.LIST_PAYMENT, query);
+            String response = BaseClient.getRequest(AsaasUtil.LIST_PAYMENTS, query);
             return gson.fromJson(response, PaymentListResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);

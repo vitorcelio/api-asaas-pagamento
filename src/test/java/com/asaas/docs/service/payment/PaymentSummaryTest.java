@@ -1,10 +1,11 @@
 package com.asaas.docs.service.payment;
 
 import com.asaas.docs.configuration.AsaasApiConfig;
-import com.asaas.docs.dto.request.*;
+import com.asaas.docs.dto.request.PaymentReceiptCashRequestDTO;
+import com.asaas.docs.dto.request.PaymentRequestDTO;
+import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
 import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
-import com.asaas.docs.dto.response.PaymentResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.service.payment.impl.PaymentSummaryServiceImpl;
