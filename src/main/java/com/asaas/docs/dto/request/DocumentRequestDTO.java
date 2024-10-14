@@ -6,16 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.File;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UploadDocumentRequestDTO {
+public class DocumentRequestDTO {
 
     private boolean availableAfterPayment;
     private DocumentType type;
-    private File file;
 
 }

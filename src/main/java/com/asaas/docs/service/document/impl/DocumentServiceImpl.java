@@ -1,7 +1,7 @@
 package com.asaas.docs.service.document.impl;
 
 import com.asaas.docs.client.BaseClient;
-import com.asaas.docs.dto.request.UploadDocumentRequestDTO;
+import com.asaas.docs.dto.request.DocumentRequestDTO;
 import com.asaas.docs.dto.response.DeleteResponseDTO;
 import com.asaas.docs.dto.response.DocumentListResponseDTO;
 import com.asaas.docs.dto.response.DocumentResponseDTO;
@@ -9,17 +9,21 @@ import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.document.DocumentService;
 import com.asaas.docs.util.AsaasUtil;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.NonNull;
+
+import java.nio.file.Path;
 
 public class DocumentServiceImpl implements DocumentService {
 
-    private final Gson gson = new Gson();
+    public static Gson gson = new Gson();
 
     @Override
-    public DocumentResponseDTO uploadDocumentPayment(@NonNull String id, @NonNull UploadDocumentRequestDTO request) {
+    public DocumentResponseDTO uploadDocumentPayment(@NonNull String id, @NonNull DocumentRequestDTO request, @NonNull Path path) {
 
         try {
-            String response = BaseClient.postRequestMultipartFormData(String.format(AsaasUtil.UPLOAD_DOCUMENT_PAYMENT, id), gson.toJson(request));
+            gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+            String response = BaseClient.postRequestMultipartFormData(String.format(AsaasUtil.UPLOAD_DOCUMENT_PAYMENT, id), gson.toJson(request), path);
             return gson.fromJson(response, DocumentResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
@@ -40,7 +44,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public DocumentResponseDTO updateSettingsDocumentPayment(@NonNull String id, @NonNull String documentId, @NonNull UploadDocumentRequestDTO request) {
+    public DocumentResponseDTO updateSettingsDocumentPayment(@NonNull String id, @NonNull String documentId, @NonNull DocumentRequestDTO request) {
 
         try {
             String response = BaseClient.putRequest(String.format(AsaasUtil.UPDATE_SETTINGS_DOCUMENT_PAYMENT, id, documentId), gson.toJson(request));
