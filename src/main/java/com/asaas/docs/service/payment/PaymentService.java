@@ -5,17 +5,7 @@ import com.asaas.docs.dto.request.PaymentRefundRequestDTO;
 import com.asaas.docs.dto.request.PaymentRequestDTO;
 import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
 import com.asaas.docs.dto.request.SalesSimulationRequestDTO;
-import com.asaas.docs.dto.response.BankSlipResponseDTO;
-import com.asaas.docs.dto.response.ChargebackResponseDTO;
-import com.asaas.docs.dto.response.PaymentBillingInfoResponseDTO;
-import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
-import com.asaas.docs.dto.response.PaymentListResponseDTO;
-import com.asaas.docs.dto.response.PaymentResponseDTO;
-import com.asaas.docs.dto.response.PaymentStatusResponseDTO;
-import com.asaas.docs.dto.response.PaymentViewingInfoResponseDTO;
-import com.asaas.docs.dto.response.PixResponseDTO;
-import com.asaas.docs.dto.response.RecoveringPaymentLimitsResponseDTO;
-import com.asaas.docs.dto.response.SalesSimulationResponseDTO;
+import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusInvoice;
 import com.asaas.docs.enums.StatusPayment;
@@ -44,7 +34,7 @@ public interface PaymentService {
 
     PaymentViewingInfoResponseDTO paymentViewingInfo(@NonNull String id);
 
-    PaymentDeleteResponseDTO deletePayment(@NonNull String id);
+    DeleteResponseDTO deletePayment(@NonNull String id);
 
     PaymentResponseDTO getPayment(@NonNull String id);
 

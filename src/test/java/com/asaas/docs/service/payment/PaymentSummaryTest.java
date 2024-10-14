@@ -4,7 +4,7 @@ import com.asaas.docs.configuration.AsaasApiConfig;
 import com.asaas.docs.dto.request.PaymentReceiptCashRequestDTO;
 import com.asaas.docs.dto.request.PaymentRequestDTO;
 import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
-import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
+import com.asaas.docs.dto.response.DeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
@@ -18,11 +18,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import static com.asaas.docs.configuration.AsaasApiConfig.API_KEY_ASAAS;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PaymentSummaryTest {
-
-    private static final String API_KEY_ASAAS = "";
 
     @InjectMocks
     private PaymentSummaryServiceImpl paymentSummaryService;
@@ -129,9 +128,9 @@ public class PaymentSummaryTest {
 
     @Test
     public void testDeleteSummaryPayment_Success() {
-        PaymentDeleteResponseDTO response = paymentSummaryService.deleteSummaryPayment("pay_dm3esz45fo1tfj0i");
+        DeleteResponseDTO response = paymentSummaryService.deleteSummaryPayment("pay_dm3esz45fo1tfj0i");
 
-        assertEquals(PaymentDeleteResponseDTO.class, response.getClass());
+        assertEquals(DeleteResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
         assertEquals("pay_dm3esz45fo1tfj0i", response.getId());
         assertTrue(response.isDeleted());

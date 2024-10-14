@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentDeleteResponseDTO {
+public class DeleteResponseDTO {
 
     private boolean deleted;
     private String id;

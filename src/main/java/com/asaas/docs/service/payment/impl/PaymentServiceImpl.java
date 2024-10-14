@@ -103,11 +103,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDeleteResponseDTO deletePayment(@NonNull String id) {
+    public DeleteResponseDTO deletePayment(@NonNull String id) {
 
         try {
             String response = BaseClient.deleteRequest(String.format(AsaasUtil.DELETE_PAYMENT, id));
-            return gson.fromJson(response, PaymentDeleteResponseDTO.class);
+            return gson.fromJson(response, DeleteResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
         }

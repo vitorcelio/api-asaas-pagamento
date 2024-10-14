@@ -3,7 +3,7 @@ package com.asaas.docs.service.payment;
 import com.asaas.docs.dto.request.PaymentReceiptCashRequestDTO;
 import com.asaas.docs.dto.request.PaymentRequestDTO;
 import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
-import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
+import com.asaas.docs.dto.response.DeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
@@ -30,7 +30,7 @@ public interface PaymentSummaryService {
 
     PaymentSummaryResponseDTO updateSummaryPayment(@NonNull String id, @NonNull PaymentUpdateRequestDTO request);
 
-    PaymentDeleteResponseDTO deleteSummaryPayment(@NonNull String id);
+    DeleteResponseDTO deleteSummaryPayment(@NonNull String id);
 
     PaymentSummaryResponseDTO restoreSummaryPayment(@NonNull String id);
 

@@ -54,6 +54,13 @@ public class AsaasUtil {
     public static final String GET_SPLIT_RECEIVED = "payments/splits/received/%s";
     public static final String LIST_SPLITS_RECEIVED = "payments/splits/received";
 
+    // TODO Document
+    public static final String UPLOAD_DOCUMENT_PAYMENT = "payments/%s/documents";
+    public static final String LIST_DOCUMENTS_PAYMENT = "payments/%s/documents";
+    public static final String UPDATE_SETTINGS_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
+    public static final String RETRIEVE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
+    public static final String DELETE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
+
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
@@ -182,7 +189,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(dateCreatedGe)) {
+        if (!isEmpty(dateCreatedGe)) {
             if (isEmpty(params.toString())) {
                 params.append("?dateCreatedGe=").append(dateCreatedGe);
             } else {
@@ -190,7 +197,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(dateCreatedLe)) {
+        if (!isEmpty(dateCreatedLe)) {
             if (isEmpty(params.toString())) {
                 params.append("?dateCreatedLe=").append(dateCreatedLe);
             } else {
@@ -198,7 +205,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(estimatedCreditDateGe)) {
+        if (!isEmpty(estimatedCreditDateGe)) {
             if (isEmpty(params.toString())) {
                 params.append("?estimatedCreditDateGe=").append(estimatedCreditDateGe);
             } else {
@@ -206,7 +213,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(estimatedCreditDateLe)) {
+        if (!isEmpty(estimatedCreditDateLe)) {
             if (isEmpty(params.toString())) {
                 params.append("?estimatedCreditDateLe=").append(estimatedCreditDateLe);
             } else {
@@ -214,7 +221,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(dueDataGe)) {
+        if (!isEmpty(dueDataGe)) {
             if (isEmpty(params.toString())) {
                 params.append("?dueDataGe=").append(dueDataGe);
             } else {
@@ -222,7 +229,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(dueDateLe)) {
+        if (!isEmpty(dueDateLe)) {
             if (isEmpty(params.toString())) {
                 params.append("?dueDateLe=").append(dueDateLe);
             } else {
@@ -230,7 +237,7 @@ public class AsaasUtil {
             }
         }
 
-        if(!isEmpty(user)) {
+        if (!isEmpty(user)) {
             if (isEmpty(params.toString())) {
                 params.append("?user=").append(user);
             } else {
@@ -245,6 +252,66 @@ public class AsaasUtil {
                                             String paymentConfirmedDateGe, String paymentConfirmedDateLe,
                                             String creditDateGe, String creditDateLe) {
         StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (!isEmpty(paymentId)) {
+            if (isEmpty(params.toString())) {
+                params.append("?paymentId=").append(paymentId);
+            } else {
+                params.append("&paymentId=").append(paymentId);
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (!isEmpty(paymentConfirmedDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?paymentConfirmedDateGe=").append(paymentConfirmedDateGe);
+            } else {
+                params.append("&paymentConfirmedDateGe=").append(paymentConfirmedDateGe);
+            }
+        }
+
+        if (!isEmpty(paymentConfirmedDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?paymentConfirmedDateLe=").append(paymentConfirmedDateLe);
+            } else {
+                params.append("&paymentConfirmedDateLe=").append(paymentConfirmedDateLe);
+            }
+        }
+
+        if (!isEmpty(creditDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?creditDateGe=").append(creditDateGe);
+            } else {
+                params.append("&creditDateGe=").append(creditDateGe);
+            }
+        }
+
+        if (!isEmpty(creditDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?creditDateLe=").append(creditDateLe);
+            } else {
+                params.append("&creditDateLe=").append(creditDateLe);
+            }
+        }
 
         return params.toString();
     }

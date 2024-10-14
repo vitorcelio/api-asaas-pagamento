@@ -26,4 +26,6 @@ public class AsaasApiConfig {
         return String.format(isSandbox ? domainSandbox : domain, version.getVersao());
     }
 
+    public static final String API_KEY_ASAAS = "";
+
 }

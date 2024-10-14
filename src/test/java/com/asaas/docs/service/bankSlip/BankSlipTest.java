@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
+import static com.asaas.docs.configuration.AsaasApiConfig.API_KEY_ASAAS;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BankSlipTest {
-
-    private static final String API_KEY_ASAAS = "";
 
     @InjectMocks
     private BankSlipServiceImpl bankSlipService;

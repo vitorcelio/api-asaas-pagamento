@@ -1,28 +1,8 @@
 package com.asaas.docs.service.payment;
 
 import com.asaas.docs.configuration.AsaasApiConfig;
-import com.asaas.docs.dto.request.CreditCardHolderInfoRequestDTO;
-import com.asaas.docs.dto.request.CreditCardRequestDTO;
-import com.asaas.docs.dto.request.PaymentReceiptCashRequestDTO;
-import com.asaas.docs.dto.request.PaymentRefundRequestDTO;
-import com.asaas.docs.dto.request.PaymentRequestDTO;
-import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
-import com.asaas.docs.dto.request.SalesSimulationRequestDTO;
-import com.asaas.docs.dto.response.BankSlipFeeResponseDTO;
-import com.asaas.docs.dto.response.BankSlipResponseDTO;
-import com.asaas.docs.dto.response.ChargebackResponseDTO;
-import com.asaas.docs.dto.response.CreditCardFeeResponseDTO;
-import com.asaas.docs.dto.response.CreditCardResponseDTO;
-import com.asaas.docs.dto.response.PaymentBillingInfoResponseDTO;
-import com.asaas.docs.dto.response.PaymentDeleteResponseDTO;
-import com.asaas.docs.dto.response.PaymentListResponseDTO;
-import com.asaas.docs.dto.response.PaymentResponseDTO;
-import com.asaas.docs.dto.response.PaymentStatusResponseDTO;
-import com.asaas.docs.dto.response.PaymentViewingInfoResponseDTO;
-import com.asaas.docs.dto.response.PixFeeResponseDTO;
-import com.asaas.docs.dto.response.PixResponseDTO;
-import com.asaas.docs.dto.response.RecoveringPaymentLimitsResponseDTO;
-import com.asaas.docs.dto.response.SalesSimulationResponseDTO;
+import com.asaas.docs.dto.request.*;
+import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.StatusPayment;
 import com.asaas.docs.service.payment.impl.PaymentServiceImpl;
@@ -36,11 +16,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.asaas.docs.configuration.AsaasApiConfig.API_KEY_ASAAS;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PaymentTest {
-
-    private static final String API_KEY_ASAAS = "";
 
     @InjectMocks
     private PaymentServiceImpl paymentService;
@@ -55,11 +36,17 @@ public class PaymentTest {
     public void testCreatePayment_Success() {
         PaymentRequestDTO request = PaymentRequestDTO.builder()
                 .customer("cus_000005828409")
-                .billingType(BillingType.BOLETO)
+                .billingType(BillingType.PIX)
                 .value(new BigDecimal("100.00"))
-                .dueDate("2024-10-08")
+                .dueDate("2024-10-14")
                 .description("Cobrança Teste")
-                .daysAfterDueDateToRegistrationCancellation(3)
+                //.daysAfterDueDateToRegistrationCancellation(3)
+                .split(Arrays.asList(
+                        SplitRequestDTO.builder()
+                                .percentualValue(new BigDecimal("20.00"))
+                                .walletId("63a73f6f-34a0-4d07-aab7-2c2a81a210a0")
+                                .build()
+                ))
                 .externalReference(UUID.randomUUID().toString())
                 .build();
 
@@ -169,9 +156,9 @@ public class PaymentTest {
 
     @Test
     public void testDeletePayment_Success() {
-        PaymentDeleteResponseDTO response = paymentService.deletePayment("pay_4o023v5s2ugovmn0");
+        DeleteResponseDTO response = paymentService.deletePayment("pay_4o023v5s2ugovmn0");
 
-        assertEquals(PaymentDeleteResponseDTO.class, response.getClass());
+        assertEquals(DeleteResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
         assertEquals("pay_4o023v5s2ugovmn0", response.getId());
         assertTrue(response.isDeleted());

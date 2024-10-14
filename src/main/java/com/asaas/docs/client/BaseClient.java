@@ -65,6 +65,29 @@ public class BaseClient {
     }
 
     @SneakyThrows
+    public static String postRequestMultipartFormData(String service, String json) {
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(AsaasApiConfig.BASE_URL() + service))
+                .header("Content-Type", "multipart/form-data; boundary=---011000010111000001101001")
+                .header("Accept", "application/json")
+                .header("access_token", AsaasApiConfig.getApiKey())
+                .POST(HttpRequest.BodyPublishers.ofString(json != null ? json : "{}", StandardCharsets.UTF_8))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if(response.statusCode() != 200 && response.statusCode() != 201) {
+            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                throw new AsaasApiException(errorResponse);
+            }
+        }
+
+        return response.body();
+    }
+
+    @SneakyThrows
     public static String putRequest(String service, String json) {
 
         HttpRequest request = HttpRequest.newBuilder()
