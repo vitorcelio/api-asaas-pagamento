@@ -61,6 +61,15 @@ public class AsaasUtil {
     public static final String RETRIEVE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
     public static final String DELETE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
 
+    // TODO Customer
+    public static final String CREATE_CUSTOMER = "customers";
+    public static final String LIST_CUSTOMERS = "customers";
+    public static final String GET_CUSTOMER = "customers/%s";
+    public static final String UPDATE_CUSTOMER = "customers/%s";
+    public static final String DELETE_CUSTOMER = "customers/%s";
+    public static final String RESTORE_CUSTOMER = "customers/%s/restore";
+    public static final String RETRIEVE_NOTIFICATIONS_CUSTOMER = "customers/%s/notifications";
+
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
@@ -310,6 +319,65 @@ public class AsaasUtil {
                 params.append("?creditDateLe=").append(creditDateLe);
             } else {
                 params.append("&creditDateLe=").append(creditDateLe);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListCustomer(Integer offset, Integer limit, String name, String email,
+                                               String cpfCnpj, String groupName, String externalReference) {
+        StringBuilder params = new StringBuilder();
+
+        if(offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if(limit != null) {
+            if(isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if(!isEmpty(name)) {
+            if(isEmpty(params.toString())) {
+                params.append("?name=").append(name);
+            } else {
+                params.append("&name=").append(name);
+            }
+        }
+
+        if(!isEmpty(email)) {
+            if(isEmpty(params.toString())) {
+                params.append("?email=").append(email);
+            } else {
+                params.append("&email=").append(email);
+            }
+        }
+
+        if(!isEmpty(cpfCnpj)) {
+            if(isEmpty(params.toString())) {
+                params.append("?cpfCnpj=").append(cpfCnpj);
+            } else {
+                params.append("&cpfCnpj=").append(cpfCnpj);
+            }
+        }
+
+        if(!isEmpty(groupName)) {
+            if(isEmpty(params.toString())) {
+                params.append("?groupName=").append(groupName);
+            } else {
+                params.append("&groupName=").append(groupName);
+            }
+        }
+
+        if(!isEmpty(externalReference)) {
+            if(isEmpty(params.toString())) {
+                params.append("?externalReference=").append(externalReference);
+            } else {
+                params.append("&externalReference=").append(externalReference);
             }
         }
 
