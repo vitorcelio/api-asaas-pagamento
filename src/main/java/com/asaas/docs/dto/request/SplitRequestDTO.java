@@ -20,5 +20,6 @@ public class SplitRequestDTO {
     private BigDecimal totalFixedValue;
     private String externalReference;
     private String description;
+    private int installmentNumber;
 
 }

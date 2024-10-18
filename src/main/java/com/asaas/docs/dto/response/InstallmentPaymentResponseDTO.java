@@ -9,10 +9,9 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankSlipFeeResponseDTO {
+public class InstallmentPaymentResponseDTO {
 
-    private BigDecimal netValue;
-    private BigDecimal feeValue;
-    private InstallmentPaymentResponseDTO installment;
+    private BigDecimal paymentNetValue;
+    private BigDecimal paymentValue;
 
 }

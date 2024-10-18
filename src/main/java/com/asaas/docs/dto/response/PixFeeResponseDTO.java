@@ -14,6 +14,6 @@ public class PixFeeResponseDTO {
     private BigDecimal netValue;
     private BigDecimal feePercentage;
     private BigDecimal feeValue;
-    private InstallmentResponseDTO installment;
+    private InstallmentPaymentResponseDTO installment;
 
 }

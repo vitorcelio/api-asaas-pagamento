@@ -5,7 +5,7 @@ import com.asaas.docs.dto.request.CustomerRequestDTO;
 import com.asaas.docs.dto.response.CustomerListResponseDTO;
 import com.asaas.docs.dto.response.CustomerResponseDTO;
 import com.asaas.docs.dto.response.DeleteResponseDTO;
-import com.asaas.docs.dto.response.NotificationListResponseDTO;
+import com.asaas.docs.dto.response.NotificationsListResponseDTO;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.customer.CustomerService;
 import com.asaas.docs.util.AsaasUtil;
@@ -92,11 +92,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public NotificationListResponseDTO notificationListCustomer(@NonNull String id) {
+    public NotificationsListResponseDTO notificationListCustomer(@NonNull String id) {
 
         try {
             String response = BaseClient.getRequest(String.format(AsaasUtil.RETRIEVE_NOTIFICATIONS_CUSTOMER, id), null);
-            return gson.fromJson(response, NotificationListResponseDTO.class);
+            return gson.fromJson(response, NotificationsListResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
         }

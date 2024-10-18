@@ -4,7 +4,7 @@ import com.asaas.docs.dto.request.CustomerRequestDTO;
 import com.asaas.docs.dto.response.CustomerListResponseDTO;
 import com.asaas.docs.dto.response.CustomerResponseDTO;
 import com.asaas.docs.dto.response.DeleteResponseDTO;
-import com.asaas.docs.dto.response.NotificationListResponseDTO;
+import com.asaas.docs.dto.response.NotificationsListResponseDTO;
 import lombok.NonNull;
 
 public interface CustomerService {
@@ -22,6 +22,6 @@ public interface CustomerService {
 
     CustomerResponseDTO restoreCustomer(@NonNull String id);
 
-    NotificationListResponseDTO notificationListCustomer(@NonNull String id);
+    NotificationsListResponseDTO notificationListCustomer(@NonNull String id);
 
 }

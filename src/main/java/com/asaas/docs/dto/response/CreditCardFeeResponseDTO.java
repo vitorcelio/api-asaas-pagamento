@@ -14,6 +14,6 @@ public class CreditCardFeeResponseDTO {
     private BigDecimal netValue;
     private BigDecimal feePercentage;
     private BigDecimal operationFee;
-    private InstallmentResponseDTO installment;
+    private InstallmentPaymentResponseDTO installment;
 
 }

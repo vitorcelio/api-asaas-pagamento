@@ -5,7 +5,7 @@ import com.asaas.docs.dto.request.CustomerRequestDTO;
 import com.asaas.docs.dto.response.CustomerListResponseDTO;
 import com.asaas.docs.dto.response.CustomerResponseDTO;
 import com.asaas.docs.dto.response.DeleteResponseDTO;
-import com.asaas.docs.dto.response.NotificationListResponseDTO;
+import com.asaas.docs.dto.response.NotificationsListResponseDTO;
 import com.asaas.docs.service.customer.impl.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -98,9 +98,9 @@ public class CustomerTest {
 
     @Test
     public void testNotificationListCustomer_Success() {
-        NotificationListResponseDTO response = customerService.notificationListCustomer("cus_000006287494");
+        NotificationsListResponseDTO response = customerService.notificationListCustomer("cus_000006287494");
 
-        assertEquals(NotificationListResponseDTO.class, response.getClass());
+        assertEquals(NotificationsListResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
         assertNotEquals(null, response.getData());
     }

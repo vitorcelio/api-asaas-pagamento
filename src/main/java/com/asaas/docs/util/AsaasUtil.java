@@ -70,6 +70,10 @@ public class AsaasUtil {
     public static final String RESTORE_CUSTOMER = "customers/%s/restore";
     public static final String RETRIEVE_NOTIFICATIONS_CUSTOMER = "customers/%s/notifications";
 
+    // TODO Notification
+    public static final String UPDATE_EXISTING_NOTIFICATION = "notifications/%s";
+    public static final String UPDATE_EXISTING_NOTIFICATIONS_BATCH = "notifications/batch";
+
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
@@ -378,6 +382,42 @@ public class AsaasUtil {
                 params.append("?externalReference=").append(externalReference);
             } else {
                 params.append("&externalReference=").append(externalReference);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListInstallment(Integer offset, Integer limit) {
+        StringBuilder params = new StringBuilder();
+
+        if(offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if(limit != null) {
+            if(isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsGenerateInstallmentBooklet(String sort, String order) {
+        StringBuilder params = new StringBuilder();
+
+        if (!isEmpty(sort)) {
+            params.append("?sort=").append(sort);
+        }
+
+        if (!isEmpty(order)) {
+            if (isEmpty(params.toString())) {
+                params.append("?order=").append(order);
+            } else {
+                params.append("&order=").append(order);
             }
         }
 

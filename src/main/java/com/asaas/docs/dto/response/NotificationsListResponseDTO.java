@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationListResponseDTO {
+public class NotificationsListResponseDTO {
 
     private String object;
     private boolean hasMore;
