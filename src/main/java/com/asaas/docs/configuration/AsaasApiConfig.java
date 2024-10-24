@@ -1,6 +1,7 @@
 package com.asaas.docs.configuration;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 public class AsaasApiConfig {
@@ -18,12 +19,14 @@ public class AsaasApiConfig {
 
     @Setter
     @Getter
+    @NonNull
     private static String apiKey;
 
     public static String BASE_URL() {
         return String.format(isSandbox ? domainSandbox : domain, version.getVersao());
     }
 
+    // Constante Usada para testes
     public static final String API_KEY_ASAAS = "";
 
 }

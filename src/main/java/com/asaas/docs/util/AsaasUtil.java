@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public class AsaasUtil {
 
-    // TODO Payments
+    // Payments
     public static final String CREATE_PAYMENT = "payments";
     public static final String LIST_PAYMENTS = "payments";
     public static final String CAPTURE_PAYMENT_PRE_AUTHORIZE = "payments/%s/captureAuthorizedPayment";
@@ -30,7 +30,7 @@ public class AsaasUtil {
     public static final String RECOVERING_PAYMENT_LIMITS = "payments/limits";
     public static final String GET_CHARGEBACK = "payments/%s/chargeback";
 
-    // TODO Payment Summary
+    // Payment Summary
     public static final String CREATE_SUMMARY_PAYMENT = "lean/payments";
     public static final String SUMMARY_LIST_PAYMENT = "lean/payments";
     public static final String CAPTURE_SUMMARY_PAYMENT_PRE_AUTHORIZATION = "lean/payments/%s/captureAuthorizedPayment";
@@ -42,26 +42,26 @@ public class AsaasUtil {
     public static final String CONFIRM_CASH_RECEIPT_SUMMARY = "lean/payments/%s/receiveInCash";
     public static final String UNDO_CASH_RECEIPT_SUMMARY = "lean/payments/%s/undoReceivedInCash";
 
-    // TODO CreditCard
+    // Credit Card
     public static final String TOKENIZE_CREDIT_CARD = "creditCard/tokenizeCreditCard";
 
-    // TODO Bank Slip
+    // Bank Slip
     public static final String BANK_SLIP_REFUND = "payments/%s/bankSlip/refund";
 
-    // TODO Split
+    // Split
     public static final String GET_SPLIT_PAID = "payments/splits/paid/%s";
     public static final String LIST_SPLITS_PAID = "payments/splits/paid";
     public static final String GET_SPLIT_RECEIVED = "payments/splits/received/%s";
     public static final String LIST_SPLITS_RECEIVED = "payments/splits/received";
 
-    // TODO Document
+    // Document
     public static final String UPLOAD_DOCUMENT_PAYMENT = "payments/%s/documents";
     public static final String LIST_DOCUMENTS_PAYMENT = "payments/%s/documents";
     public static final String UPDATE_SETTINGS_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
     public static final String RETRIEVE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
     public static final String DELETE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
 
-    // TODO Customer
+    // Customer
     public static final String CREATE_CUSTOMER = "customers";
     public static final String LIST_CUSTOMERS = "customers";
     public static final String GET_CUSTOMER = "customers/%s";
@@ -70,9 +70,19 @@ public class AsaasUtil {
     public static final String RESTORE_CUSTOMER = "customers/%s/restore";
     public static final String RETRIEVE_NOTIFICATIONS_CUSTOMER = "customers/%s/notifications";
 
-    // TODO Notification
+    // Notification
     public static final String UPDATE_EXISTING_NOTIFICATION = "notifications/%s";
     public static final String UPDATE_EXISTING_NOTIFICATIONS_BATCH = "notifications/batch";
+
+    // Installment
+    public static final String CREATE_INSTALLMENT = "installments";
+    public static final String LIST_INSTALLMENTS = "installments";
+    public static final String GET_INSTALLMENT = "installments/%s";
+    public static final String DELETE_INSTALLMENT = "installments/%s";
+    public static final String LIST_PAYMENTS_OF_A_INSTALLMENT = "installments/%s/payments";
+    public static final String GENERATE_INSTALLMENT_BOOKLET = "installments/%s/paymentBook";
+    public static final String REFUND_INSTALLMENT = "installments/%s/refund";
+    public static final String UPDATE_INSTALLMENT_SPLITS = "installments/%s/splits";
 
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
@@ -401,6 +411,16 @@ public class AsaasUtil {
             } else {
                 params.append("&limit=").append(limit);
             }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsPaymentListOfAInstallment(StatusPayment status) {
+        StringBuilder params = new StringBuilder();
+
+        if(status != null) {
+            params.append("?status=").append(status.name());
         }
 
         return params.toString();

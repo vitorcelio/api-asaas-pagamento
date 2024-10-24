@@ -3,6 +3,7 @@ package com.asaas.docs.service.installments;
 import com.asaas.docs.dto.request.InstallmentRequestDTO;
 import com.asaas.docs.dto.request.InstallmentSplitsRequestDTO;
 import com.asaas.docs.dto.response.*;
+import com.asaas.docs.enums.StatusPayment;
 import lombok.NonNull;
 
 public interface InstallmentsService {
@@ -11,15 +12,13 @@ public interface InstallmentsService {
 
     InstallmentListResponseDTO installmentList(Integer offset, Integer limit);
 
-    InstallmentResponseDTO createInstallmentWithCreditCard(@NonNull InstallmentRequestDTO request);
-
     InstallmentResponseDTO getInstallment(@NonNull String id);
 
     DeleteResponseDTO deleteInstallment(@NonNull String id);
 
-    PaymentListResponseDTO paymentListOfAInstallment(Integer offset, Integer limit);
+    PaymentListResponseDTO paymentListOfAInstallment(@NonNull String id, StatusPayment status);
 
-    void generateInstallmentBooklet(@NonNull String id, String sort, String order);
+    String generateInstallmentBooklet(@NonNull String id, String sort, String order);
 
     InstallmentResponseDTO refundInstallment(@NonNull String id);
 
