@@ -57,10 +57,10 @@ public class PaymentTest {
 
     @Test
     public void testPaymentList_Success() {
-        PaymentListResponseDTO response = paymentService.paymentsList(null, null, null, null, null, null, null, null,
+        PaymentsListResponseDTO response = paymentService.paymentsList(null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
-        assertEquals(PaymentListResponseDTO.class, response.getClass());
+        assertEquals(PaymentsListResponseDTO.class, response.getClass());
         assertEquals(ArrayList.class, response.getData().getClass());
     }
 

@@ -16,7 +16,7 @@ public interface InstallmentsService {
 
     DeleteResponseDTO deleteInstallment(@NonNull String id);
 
-    PaymentListResponseDTO paymentListOfAInstallment(@NonNull String id, StatusPayment status);
+    PaymentsListResponseDTO paymentsListOfAInstallment(@NonNull String id, StatusPayment status);
 
     String generateInstallmentBooklet(@NonNull String id, String sort, String order);
 

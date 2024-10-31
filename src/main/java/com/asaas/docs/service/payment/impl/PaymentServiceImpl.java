@@ -30,14 +30,14 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentListResponseDTO paymentsList(String installment, Integer offset, Integer limit, String customer,
-                                               String customerGroupName, BillingType billingType,
-                                               StatusPayment status, String subscription, String externalReference,
-                                               String paymentDate, StatusInvoice invoiceStatus,
-                                               String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
-                                               Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
-                                               String estimatedCreditDateGe, String estimatedCreditDateLe,
-                                               String dueDataGe, String dueDateLe, String user) {
+    public PaymentsListResponseDTO paymentsList(String installment, Integer offset, Integer limit, String customer,
+                                                String customerGroupName, BillingType billingType,
+                                                StatusPayment status, String subscription, String externalReference,
+                                                String paymentDate, StatusInvoice invoiceStatus,
+                                                String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
+                                                Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
+                                                String estimatedCreditDateGe, String estimatedCreditDateLe,
+                                                String dueDataGe, String dueDateLe, String user) {
 
         var query = AsaasUtil.getParamsListPayment(installment, offset, limit, customer, customerGroupName, billingType,
                 status, subscription, externalReference, paymentDate, invoiceStatus, estimatedCreditDate, pixQrCodeId
@@ -46,7 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         try {
             String response = BaseClient.getRequest(AsaasUtil.LIST_PAYMENTS, query);
-            return gson.fromJson(response, PaymentListResponseDTO.class);
+            return gson.fromJson(response, PaymentsListResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
         }

@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentListResponseDTO {
+public class PaymentsListResponseDTO {
 
     private String object;
     private boolean hasMore;

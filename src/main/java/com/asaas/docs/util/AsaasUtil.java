@@ -1,9 +1,6 @@
 package com.asaas.docs.util;
 
-import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
-import com.asaas.docs.enums.StatusSplit;
+import com.asaas.docs.enums.*;
 
 import java.util.Collection;
 
@@ -83,6 +80,20 @@ public class AsaasUtil {
     public static final String GENERATE_INSTALLMENT_BOOKLET = "installments/%s/paymentBook";
     public static final String REFUND_INSTALLMENT = "installments/%s/refund";
     public static final String UPDATE_INSTALLMENT_SPLITS = "installments/%s/splits";
+
+    // Subscription
+    public static final String CREATE_SUBSCRIPTION = "subscriptions";
+    public static final String LIST_SUBSCRIPTIONS = "subscriptions";
+    public static final String GET_SUBSCRIPTION = "subscriptions/%s";
+    public static final String UPDATE_SUBSCRIPTION = "subscriptions/%s";
+    public static final String DELETE_SUBSCRIPTION = "subscriptions/%s";
+    public static final String LIST_PAYMENTS_OF_A_SUBSCRIPTION = "subscriptions/%s/payments";
+    public static final String GENERATE_SUBSCRIPTION_BOOKLET = "subscriptions/%s/paymentBook";
+    public static final String CREATE_CONFIGURATION_FOR_ISSUING_INVOICES = "subscriptions/%s/invoiceSettings";
+    public static final String RETRIEVE_CONFIGURATION_FOR_ISSUING_INVOICES = "subscriptions/%s/invoiceSettings";
+    public static final String REMOVE_CONFIGURATION_FOR_ISSUING_INVOICES = "subscriptions/%s/invoiceSettings";
+    public static final String UPDATE_CONFIGURATION_FOR_ISSUING_INVOICES = "subscriptions/%s/invoiceSettings";
+    public static final String LIST_INVOICES_FOR_SUBSCRIPTION = "subscriptions/%s/invoices";
 
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
@@ -214,49 +225,49 @@ public class AsaasUtil {
 
         if (!isEmpty(dateCreatedGe)) {
             if (isEmpty(params.toString())) {
-                params.append("?dateCreatedGe=").append(dateCreatedGe);
+                params.append("?dateCreated[ge]=").append(dateCreatedGe);
             } else {
-                params.append("&dateCreatedGe=").append(dateCreatedGe);
+                params.append("&dateCreated[ge]=").append(dateCreatedGe);
             }
         }
 
         if (!isEmpty(dateCreatedLe)) {
             if (isEmpty(params.toString())) {
-                params.append("?dateCreatedLe=").append(dateCreatedLe);
+                params.append("?dateCreated[le]=").append(dateCreatedLe);
             } else {
-                params.append("&dateCreatedLe=").append(dateCreatedLe);
+                params.append("&dateCreated[le]=").append(dateCreatedLe);
             }
         }
 
         if (!isEmpty(estimatedCreditDateGe)) {
             if (isEmpty(params.toString())) {
-                params.append("?estimatedCreditDateGe=").append(estimatedCreditDateGe);
+                params.append("?estimatedCreditDate[ge]=").append(estimatedCreditDateGe);
             } else {
-                params.append("&estimatedCreditDateGe=").append(estimatedCreditDateGe);
+                params.append("&estimatedCreditDate[ge]=").append(estimatedCreditDateGe);
             }
         }
 
         if (!isEmpty(estimatedCreditDateLe)) {
             if (isEmpty(params.toString())) {
-                params.append("?estimatedCreditDateLe=").append(estimatedCreditDateLe);
+                params.append("?estimatedCreditDate[le]=").append(estimatedCreditDateLe);
             } else {
-                params.append("&estimatedCreditDateLe=").append(estimatedCreditDateLe);
+                params.append("&estimatedCreditDate[le]=").append(estimatedCreditDateLe);
             }
         }
 
         if (!isEmpty(dueDataGe)) {
             if (isEmpty(params.toString())) {
-                params.append("?dueDataGe=").append(dueDataGe);
+                params.append("?dueData[ge]=").append(dueDataGe);
             } else {
-                params.append("&dueDataGe=").append(dueDataGe);
+                params.append("&dueData[ge]=").append(dueDataGe);
             }
         }
 
         if (!isEmpty(dueDateLe)) {
             if (isEmpty(params.toString())) {
-                params.append("?dueDateLe=").append(dueDateLe);
+                params.append("?dueDate[le]=").append(dueDateLe);
             } else {
-                params.append("&dueDateLe=").append(dueDateLe);
+                params.append("&dueDate[le]=").append(dueDateLe);
             }
         }
 
@@ -306,33 +317,33 @@ public class AsaasUtil {
 
         if (!isEmpty(paymentConfirmedDateGe)) {
             if (isEmpty(params.toString())) {
-                params.append("?paymentConfirmedDateGe=").append(paymentConfirmedDateGe);
+                params.append("?paymentConfirmedDate[ge]=").append(paymentConfirmedDateGe);
             } else {
-                params.append("&paymentConfirmedDateGe=").append(paymentConfirmedDateGe);
+                params.append("&paymentConfirmedDate[ge]=").append(paymentConfirmedDateGe);
             }
         }
 
         if (!isEmpty(paymentConfirmedDateLe)) {
             if (isEmpty(params.toString())) {
-                params.append("?paymentConfirmedDateLe=").append(paymentConfirmedDateLe);
+                params.append("?paymentConfirmedDate[le]=").append(paymentConfirmedDateLe);
             } else {
-                params.append("&paymentConfirmedDateLe=").append(paymentConfirmedDateLe);
+                params.append("&paymentConfirmedDate[le]=").append(paymentConfirmedDateLe);
             }
         }
 
         if (!isEmpty(creditDateGe)) {
             if (isEmpty(params.toString())) {
-                params.append("?creditDateGe=").append(creditDateGe);
+                params.append("?creditDate[ge]=").append(creditDateGe);
             } else {
-                params.append("&creditDateGe=").append(creditDateGe);
+                params.append("&creditDate[ge]=").append(creditDateGe);
             }
         }
 
         if (!isEmpty(creditDateLe)) {
             if (isEmpty(params.toString())) {
-                params.append("?creditDateLe=").append(creditDateLe);
+                params.append("?creditDate[le]=").append(creditDateLe);
             } else {
-                params.append("&creditDateLe=").append(creditDateLe);
+                params.append("&creditDate[le]=").append(creditDateLe);
             }
         }
 
@@ -343,52 +354,52 @@ public class AsaasUtil {
                                                String cpfCnpj, String groupName, String externalReference) {
         StringBuilder params = new StringBuilder();
 
-        if(offset != null) {
+        if (offset != null) {
             params.append("?offset=").append(offset);
         }
 
-        if(limit != null) {
-            if(isEmpty(params.toString())) {
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
                 params.append("?limit=").append(limit);
             } else {
                 params.append("&limit=").append(limit);
             }
         }
 
-        if(!isEmpty(name)) {
-            if(isEmpty(params.toString())) {
+        if (!isEmpty(name)) {
+            if (isEmpty(params.toString())) {
                 params.append("?name=").append(name);
             } else {
                 params.append("&name=").append(name);
             }
         }
 
-        if(!isEmpty(email)) {
-            if(isEmpty(params.toString())) {
+        if (!isEmpty(email)) {
+            if (isEmpty(params.toString())) {
                 params.append("?email=").append(email);
             } else {
                 params.append("&email=").append(email);
             }
         }
 
-        if(!isEmpty(cpfCnpj)) {
-            if(isEmpty(params.toString())) {
+        if (!isEmpty(cpfCnpj)) {
+            if (isEmpty(params.toString())) {
                 params.append("?cpfCnpj=").append(cpfCnpj);
             } else {
                 params.append("&cpfCnpj=").append(cpfCnpj);
             }
         }
 
-        if(!isEmpty(groupName)) {
-            if(isEmpty(params.toString())) {
+        if (!isEmpty(groupName)) {
+            if (isEmpty(params.toString())) {
                 params.append("?groupName=").append(groupName);
             } else {
                 params.append("&groupName=").append(groupName);
             }
         }
 
-        if(!isEmpty(externalReference)) {
-            if(isEmpty(params.toString())) {
+        if (!isEmpty(externalReference)) {
+            if (isEmpty(params.toString())) {
                 params.append("?externalReference=").append(externalReference);
             } else {
                 params.append("&externalReference=").append(externalReference);
@@ -401,12 +412,12 @@ public class AsaasUtil {
     public static String getParamsListInstallment(Integer offset, Integer limit) {
         StringBuilder params = new StringBuilder();
 
-        if(offset != null) {
+        if (offset != null) {
             params.append("?offset=").append(offset);
         }
 
-        if(limit != null) {
-            if(isEmpty(params.toString())) {
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
                 params.append("?limit=").append(limit);
             } else {
                 params.append("&limit=").append(limit);
@@ -419,7 +430,7 @@ public class AsaasUtil {
     public static String getParamsPaymentListOfAInstallment(StatusPayment status) {
         StringBuilder params = new StringBuilder();
 
-        if(status != null) {
+        if (status != null) {
             params.append("?status=").append(status.name());
         }
 
@@ -438,6 +449,194 @@ public class AsaasUtil {
                 params.append("?order=").append(order);
             } else {
                 params.append("&order=").append(order);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListSubscriptions(Integer offset, Integer limit, String customer,
+                                                    String customerGroupName, BillingType billingType,
+                                                    StatusSubscription status, Boolean deletedOnly,
+                                                    Boolean includeDeleted, String externalReference, String order,
+                                                    String sort) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (!isEmpty(customer)) {
+            if (isEmpty(params.toString())) {
+                params.append("?customer=").append(customer);
+            } else {
+                params.append("&customer=").append(customer);
+            }
+        }
+
+        if (!isEmpty(customerGroupName)) {
+            if (isEmpty(params.toString())) {
+                params.append("?customerGroupName=").append(customerGroupName);
+            } else {
+                params.append("&customerGroupName=").append(customerGroupName);
+            }
+        }
+
+        if (billingType != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?billingType=").append(billingType.name());
+            } else {
+                params.append("&billingType=").append(billingType.name());
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (deletedOnly != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?deletedOnly=").append(deletedOnly);
+            } else {
+                params.append("&deletedOnly=").append(deletedOnly);
+            }
+        }
+
+        if (includeDeleted != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?includeDeleted=").append(includeDeleted);
+            } else {
+                params.append("&includeDeleted=").append(includeDeleted);
+            }
+        }
+
+        if (!isEmpty(externalReference)) {
+            if (isEmpty(params.toString())) {
+                params.append("?externalReference=").append(externalReference);
+            } else {
+                params.append("&externalReference=").append(externalReference);
+            }
+        }
+
+        if (!isEmpty(order)) {
+            if (isEmpty(params.toString())) {
+                params.append("?order=").append(order);
+            } else {
+                params.append("&order=").append(order);
+            }
+        }
+
+        if (!isEmpty(sort)) {
+            if (isEmpty(params.toString())) {
+                params.append("?sort=").append(sort);
+            } else {
+                params.append("&sort=").append(sort);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsGenerateSubscriptionBooklet(Integer month, Integer year, String sort, String order) {
+        StringBuilder params = new StringBuilder();
+
+        if (month != null) {
+            params.append("?month=").append(month);
+        }
+
+        if (year != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?year=").append(year);
+            } else {
+                params.append("&year=").append(year);
+            }
+        }
+
+        if (!isEmpty(sort)) {
+            if (isEmpty(params.toString())) {
+                params.append("?sort=").append(sort);
+            } else {
+                params.append("&sort=").append(sort);
+            }
+        }
+
+        if (!isEmpty(order)) {
+            if (isEmpty(params.toString())) {
+                params.append("?order=").append(order);
+            } else {
+                params.append("&order=").append(order);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListInvoicesForSubscription(Integer offset, Integer limit, String effectiveDateGe,
+                                                              String effectiveDateLe, String externalReference,
+                                                              StatusInvoice status, String customer) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (!isEmpty(effectiveDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?effectiveDate[ge]=").append(effectiveDateGe);
+            } else {
+                params.append("&effectiveDate[ge]=").append(effectiveDateGe);
+            }
+        }
+
+        if (!isEmpty(effectiveDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?effectiveDate[le]=").append(effectiveDateLe);
+            } else {
+                params.append("&effectiveDate[le]=").append(effectiveDateLe);
+            }
+        }
+
+        if (!isEmpty(externalReference)) {
+            if (isEmpty(params.toString())) {
+                params.append("?externalReference=").append(externalReference);
+            } else {
+                params.append("&externalReference=").append(externalReference);
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (!isEmpty(customer)) {
+            if (isEmpty(params.toString())) {
+                params.append("?customer=").append(customer);
+            } else {
+                params.append("&customer=").append(customer);
             }
         }
 

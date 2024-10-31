@@ -16,7 +16,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InstallmentTest {
 
@@ -80,10 +82,10 @@ public class InstallmentTest {
 
     @Test
     public void testPaymentListOfAInstallment_Success() {
-        PaymentListResponseDTO response = installmentsService.paymentListOfAInstallment("8e19dd03-0201-4bdf-b2ca-2a7fa0ef252e", null);
+        PaymentsListResponseDTO response = installmentsService.paymentsListOfAInstallment("8e19dd03-0201-4bdf-b2ca-2a7fa0ef252e", null);
 
         assertNotNull(response);
-        assertEquals(PaymentListResponseDTO.class, response.getClass());
+        assertEquals(PaymentsListResponseDTO.class, response.getClass());
         assertNotNull(response.getData());
     }
 
