@@ -1,7 +1,7 @@
 package com.asaas.docs.dto.response;
 
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,7 @@ public class PaymentSummaryResponseDTO {
     private boolean canBePaidAfterDueDate;
     private String confirmedDate;
     private String pixTransactionId;
-    private StatusPayment status;
+    private PaymentStatus status;
     private String dueDate;
     private String originalDueDate;
     private String paymentDate;

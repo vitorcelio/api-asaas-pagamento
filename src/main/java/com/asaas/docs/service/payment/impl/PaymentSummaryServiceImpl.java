@@ -8,8 +8,8 @@ import com.asaas.docs.dto.response.DeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.payment.PaymentSummaryService;
 import com.asaas.docs.util.AsaasUtil;
@@ -34,7 +34,7 @@ public class PaymentSummaryServiceImpl implements PaymentSummaryService {
     }
 
     @Override
-    public PaymentListSummaryResponseDTO summaryPaymentsList(String installment, Integer offset, Integer limit, String customer, String customerGroupName, BillingType billingType, StatusPayment status, String subscription, String externalReference, String paymentDate, StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId, Boolean anticipated, Boolean anticipable, String dateCreatedGe, String dateCreatedLe, String estimatedCreditDateGe, String estimatedCreditDateLe, String dueDataGe, String dueDateLe, String user) {
+    public PaymentListSummaryResponseDTO summaryPaymentsList(String installment, Integer offset, Integer limit, String customer, String customerGroupName, BillingType billingType, PaymentStatus status, String subscription, String externalReference, String paymentDate, InvoiceStatus invoiceStatus, String estimatedCreditDate, String pixQrCodeId, Boolean anticipated, Boolean anticipable, String dateCreatedGe, String dateCreatedLe, String estimatedCreditDateGe, String estimatedCreditDateLe, String dueDataGe, String dueDateLe, String user) {
 
         var query = AsaasUtil.getParamsListPayment(installment, offset, limit, customer, customerGroupName, billingType,
                 status, subscription, externalReference, paymentDate, invoiceStatus, estimatedCreditDate, pixQrCodeId

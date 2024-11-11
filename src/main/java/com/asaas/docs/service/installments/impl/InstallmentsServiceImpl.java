@@ -8,7 +8,7 @@ import com.asaas.docs.dto.response.InstallmentListResponseDTO;
 import com.asaas.docs.dto.response.InstallmentResponseDTO;
 import com.asaas.docs.dto.response.InstallmentSplitsResponseDTO;
 import com.asaas.docs.dto.response.PaymentsListResponseDTO;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.PaymentStatus;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.installments.InstallmentsService;
 import com.asaas.docs.util.AsaasUtil;
@@ -72,7 +72,7 @@ public class InstallmentsServiceImpl implements InstallmentsService {
     }
 
     @Override
-    public PaymentsListResponseDTO paymentsListOfAInstallment(@NonNull String id, StatusPayment status) {
+    public PaymentsListResponseDTO paymentsListOfAInstallment(@NonNull String id, PaymentStatus status) {
 
         var query = AsaasUtil.getParamsPaymentListOfAInstallment(status);
 

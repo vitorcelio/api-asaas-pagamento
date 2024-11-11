@@ -12,6 +12,10 @@ public class AsaasApiException extends RuntimeException {
         super();
     }
 
+    public AsaasApiException(String message) {
+        super(message);
+    }
+
     public AsaasApiException(Throwable cause) {
         super(cause);
     }

@@ -1,6 +1,6 @@
 package com.asaas.docs.enums;
 
-public enum StatusRefunds {
+public enum RefundsStatus {
 
     PENDING, AWAITING_CRITICAL_ACTION_AUTHORIZATION, CANCELLED, DONE;
 

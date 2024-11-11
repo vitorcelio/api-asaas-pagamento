@@ -3,7 +3,7 @@ package com.asaas.docs.service.split.impl;
 import com.asaas.docs.client.BaseClient;
 import com.asaas.docs.dto.response.SplitListResponseDTO;
 import com.asaas.docs.dto.response.SplitResponseDTO;
-import com.asaas.docs.enums.StatusSplit;
+import com.asaas.docs.enums.SplitStatus;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.split.SplitService;
 import com.asaas.docs.util.AsaasUtil;
@@ -27,7 +27,7 @@ public class SplitServiceImpl implements SplitService {
     }
 
     @Override
-    public SplitListResponseDTO splitsPaidList(Integer offset, Integer limit, String paymentId, StatusSplit status,
+    public SplitListResponseDTO splitsPaidList(Integer offset, Integer limit, String paymentId, SplitStatus status,
                                                String paymentConfirmedDateGe, String paymentConfirmedDateLe,
                                                String creditDateGe, String creditDateLe) {
 
@@ -57,7 +57,7 @@ public class SplitServiceImpl implements SplitService {
 
     @Override
     public SplitListResponseDTO splitsReceivedList(Integer offset, Integer limit, String paymentId,
-                                                   StatusSplit status, String paymentConfirmedDateGe,
+                                                   SplitStatus status, String paymentConfirmedDateGe,
                                                    String paymentConfirmedDateLe, String creditDateGe,
                                                    String creditDateLe) {
 

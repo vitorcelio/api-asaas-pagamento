@@ -42,8 +42,10 @@ public class BaseClient {
                 .GET()
                 .build();
 
-
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        verifyErrorApiAsaas(response);
+
         return response.body();
     }
 
@@ -60,12 +62,7 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() != 200 && response.statusCode() != 201) {
-            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
-            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
-                throw new AsaasApiException(errorResponse);
-            }
-        }
+        verifyErrorApiAsaas(response);
 
         return response.body();
     }
@@ -87,12 +84,7 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() != 200 && response.statusCode() != 201) {
-            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
-            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
-                throw new AsaasApiException(errorResponse);
-            }
-        }
+        verifyErrorApiAsaas(response);
 
         return response.body();
     }
@@ -110,12 +102,7 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() != 200 && response.statusCode() != 201) {
-            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
-            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
-                throw new AsaasApiException(errorResponse);
-            }
-        }
+        verifyErrorApiAsaas(response);
 
         return response.body();
     }
@@ -133,12 +120,7 @@ public class BaseClient {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() != 200 && response.statusCode() != 201) {
-            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
-            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
-                throw new AsaasApiException(errorResponse);
-            }
-        }
+        verifyErrorApiAsaas(response);
 
         return response.body();
     }
@@ -182,6 +164,20 @@ public class BaseClient {
             pos += array.length;
         }
         return result;
+    }
+
+    private static void verifyErrorApiAsaas(HttpResponse<String> response) {
+        if (response.statusCode() != 200 && response.statusCode() != 201) {
+
+            if (response.statusCode() == 401) {
+                throw new AsaasApiException("Erro 401: Não Autorizado na API da Asaas Pagamento (Verifique se sua API_KEY está inserida corretamente ou se está expirada).");
+            }
+
+            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                throw new AsaasApiException(errorResponse);
+            }
+        }
     }
 
 }

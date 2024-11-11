@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentBillingInfoResponseDTO {
+public class PayerResponseDTO {
 
-    private PixPaymentResponseDTO pix;
-    private CreditCardResponseDTO creditCard;
-    private BankSlipResponseDTO bankSlip;
+    private String name;
+    private String cpfCnpj;
 
 }

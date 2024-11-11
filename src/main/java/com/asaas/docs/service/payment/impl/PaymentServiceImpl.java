@@ -4,8 +4,8 @@ import com.asaas.docs.client.BaseClient;
 import com.asaas.docs.dto.request.*;
 import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.payment.PaymentService;
 import com.asaas.docs.util.AsaasUtil;
@@ -32,8 +32,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentsListResponseDTO paymentsList(String installment, Integer offset, Integer limit, String customer,
                                                 String customerGroupName, BillingType billingType,
-                                                StatusPayment status, String subscription, String externalReference,
-                                                String paymentDate, StatusInvoice invoiceStatus,
+                                                PaymentStatus status, String subscription, String externalReference,
+                                                String paymentDate, InvoiceStatus invoiceStatus,
                                                 String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
                                                 Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
                                                 String estimatedCreditDateGe, String estimatedCreditDateLe,
@@ -188,11 +188,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PixResponseDTO getQrCodePix(@NonNull String id) {
+    public PixPaymentResponseDTO getQrCodePix(@NonNull String id) {
 
         try {
             String response = BaseClient.getRequest(String.format(AsaasUtil.GET_PIX_QR_CODE, id), null);
-            return gson.fromJson(response, PixResponseDTO.class);
+            return gson.fromJson(response, PixPaymentResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
         }

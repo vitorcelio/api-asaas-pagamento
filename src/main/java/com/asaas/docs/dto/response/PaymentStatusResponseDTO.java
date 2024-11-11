@@ -1,6 +1,6 @@
 package com.asaas.docs.dto.response;
 
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PaymentStatusResponseDTO {
 
-    private StatusPayment status;
+    private PaymentStatus status;
 
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public class AsaasUtil {
 
-    // Payments
+    // ==========| Payments |==========
     public static final String CREATE_PAYMENT = "payments";
     public static final String LIST_PAYMENTS = "payments";
     public static final String CAPTURE_PAYMENT_PRE_AUTHORIZE = "payments/%s/captureAuthorizedPayment";
@@ -27,7 +27,7 @@ public class AsaasUtil {
     public static final String RECOVERING_PAYMENT_LIMITS = "payments/limits";
     public static final String GET_CHARGEBACK = "payments/%s/chargeback";
 
-    // Payment Summary
+    // ==========| Payment Summary |==========
     public static final String CREATE_SUMMARY_PAYMENT = "lean/payments";
     public static final String SUMMARY_LIST_PAYMENT = "lean/payments";
     public static final String CAPTURE_SUMMARY_PAYMENT_PRE_AUTHORIZATION = "lean/payments/%s/captureAuthorizedPayment";
@@ -39,26 +39,26 @@ public class AsaasUtil {
     public static final String CONFIRM_CASH_RECEIPT_SUMMARY = "lean/payments/%s/receiveInCash";
     public static final String UNDO_CASH_RECEIPT_SUMMARY = "lean/payments/%s/undoReceivedInCash";
 
-    // Credit Card
+    // ==========| Credit Card |==========
     public static final String TOKENIZE_CREDIT_CARD = "creditCard/tokenizeCreditCard";
 
-    // Bank Slip
+    // ==========| Bank Slip |==========
     public static final String BANK_SLIP_REFUND = "payments/%s/bankSlip/refund";
 
-    // Split
+    // ==========| Split |==========
     public static final String GET_SPLIT_PAID = "payments/splits/paid/%s";
     public static final String LIST_SPLITS_PAID = "payments/splits/paid";
     public static final String GET_SPLIT_RECEIVED = "payments/splits/received/%s";
     public static final String LIST_SPLITS_RECEIVED = "payments/splits/received";
 
-    // Document
+    // ==========| Document |==========
     public static final String UPLOAD_DOCUMENT_PAYMENT = "payments/%s/documents";
     public static final String LIST_DOCUMENTS_PAYMENT = "payments/%s/documents";
     public static final String UPDATE_SETTINGS_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
     public static final String RETRIEVE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
     public static final String DELETE_DOCUMENT_PAYMENT = "payments/%s/documents/%s";
 
-    // Customer
+    // ==========| Customer |==========
     public static final String CREATE_CUSTOMER = "customers";
     public static final String LIST_CUSTOMERS = "customers";
     public static final String GET_CUSTOMER = "customers/%s";
@@ -67,11 +67,11 @@ public class AsaasUtil {
     public static final String RESTORE_CUSTOMER = "customers/%s/restore";
     public static final String RETRIEVE_NOTIFICATIONS_CUSTOMER = "customers/%s/notifications";
 
-    // Notification
+    // ==========| Notification |==========
     public static final String UPDATE_EXISTING_NOTIFICATION = "notifications/%s";
     public static final String UPDATE_EXISTING_NOTIFICATIONS_BATCH = "notifications/batch";
 
-    // Installment
+    // ==========| Installment |==========
     public static final String CREATE_INSTALLMENT = "installments";
     public static final String LIST_INSTALLMENTS = "installments";
     public static final String GET_INSTALLMENT = "installments/%s";
@@ -81,7 +81,7 @@ public class AsaasUtil {
     public static final String REFUND_INSTALLMENT = "installments/%s/refund";
     public static final String UPDATE_INSTALLMENT_SPLITS = "installments/%s/splits";
 
-    // Subscription
+    // ==========| Subscription |==========
     public static final String CREATE_SUBSCRIPTION = "subscriptions";
     public static final String LIST_SUBSCRIPTIONS = "subscriptions";
     public static final String GET_SUBSCRIPTION = "subscriptions/%s";
@@ -95,11 +95,25 @@ public class AsaasUtil {
     public static final String UPDATE_CONFIGURATION_FOR_ISSUING_INVOICES = "subscriptions/%s/invoiceSettings";
     public static final String LIST_INVOICES_FOR_SUBSCRIPTION = "subscriptions/%s/invoices";
 
+    // ==========| PIX |==========
+    public static final String CREATE_KEY = "pix/addressKeys";
+    public static final String LIST_KEYS = "pix/addressKeys";
+    public static final String GET_KEY = "pix/addressKeys/%s";
+    public static final String DELETE_KEY = "pix/addressKeys/%s";
+    public static final String CREATE_STATIC_QRCODE = "pix/qrCodes/static";
+    public static final String DELETE_STATIC_QRCODE = "pix/qrCodes/static/%s";
+
+    // ==========| TRANSACTION |==========
+    public static final String PAY_QRCODE = "pix/qrCodes/pay";
+    public static final String DECODE_QRCODE_FOR_PAYMENT = "pix/qrCodes/decode";
+    public static final String GET_TRANSACTION = "pix/transactions/%s";
+    public static final String LIST_TRANSACTIONS = "pix/transactions";
+    public static final String CANCEL_SCHEDULED_TRANSACTION = "pix/transactions/%s/cancel";
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
-                                              StatusPayment status, String subscription, String externalReference,
-                                              String paymentDate, StatusInvoice invoiceStatus,
+                                              PaymentStatus status, String subscription, String externalReference,
+                                              String paymentDate, InvoiceStatus invoiceStatus,
                                               String estimatedCreditDate, String pixQrCodeId, Boolean anticipated,
                                               Boolean anticipable, String dateCreatedGe, String dateCreatedLe,
                                               String estimatedCreditDateGe, String estimatedCreditDateLe,
@@ -282,7 +296,7 @@ public class AsaasUtil {
         return params.toString();
     }
 
-    public static String getParamsListSplit(Integer offset, Integer limit, String paymentId, StatusSplit status,
+    public static String getParamsListSplit(Integer offset, Integer limit, String paymentId, SplitStatus status,
                                             String paymentConfirmedDateGe, String paymentConfirmedDateLe,
                                             String creditDateGe, String creditDateLe) {
         StringBuilder params = new StringBuilder();
@@ -427,7 +441,7 @@ public class AsaasUtil {
         return params.toString();
     }
 
-    public static String getParamsPaymentListOfAInstallment(StatusPayment status) {
+    public static String getParamsPaymentListOfAInstallment(PaymentStatus status) {
         StringBuilder params = new StringBuilder();
 
         if (status != null) {
@@ -457,7 +471,7 @@ public class AsaasUtil {
 
     public static String getParamsListSubscriptions(Integer offset, Integer limit, String customer,
                                                     String customerGroupName, BillingType billingType,
-                                                    StatusSubscription status, Boolean deletedOnly,
+                                                    SubscriptionStatus status, Boolean deletedOnly,
                                                     Boolean includeDeleted, String externalReference, String order,
                                                     String sort) {
         StringBuilder params = new StringBuilder();
@@ -585,7 +599,7 @@ public class AsaasUtil {
 
     public static String getParamsListInvoicesForSubscription(Integer offset, Integer limit, String effectiveDateGe,
                                                               String effectiveDateLe, String externalReference,
-                                                              StatusInvoice status, String customer) {
+                                                              InvoiceStatus status, String customer) {
         StringBuilder params = new StringBuilder();
 
         if (offset != null) {
@@ -637,6 +651,83 @@ public class AsaasUtil {
                 params.append("?customer=").append(customer);
             } else {
                 params.append("&customer=").append(customer);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListKeys(Integer offset, Integer limit, PixKeyStatus status, String statusList) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (!isEmpty(statusList)) {
+            if (isEmpty(params.toString())) {
+                params.append("?statusList=").append(statusList);
+            } else {
+                params.append("&statusList=").append(statusList);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListTransactions(Integer offset, Integer limit, TransactionStatus status,
+                                                   TransactionType type, String endToEndIdentifier) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (type != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?type=").append(type.name());
+            } else {
+                params.append("&type=").append(type.name());
+            }
+        }
+
+        if (!isEmpty(endToEndIdentifier)) {
+            if (isEmpty(params.toString())) {
+                params.append("?endToEndIdentifier=").append(endToEndIdentifier);
+            } else {
+                params.append("&endToEndIdentifier=").append(endToEndIdentifier);
             }
         }
 

@@ -6,7 +6,7 @@ import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.CycleType;
 import com.asaas.docs.enums.InvoiceCreationPeriod;
-import com.asaas.docs.enums.StatusSubscription;
+import com.asaas.docs.enums.SubscriptionStatus;
 import com.asaas.docs.service.subscription.impl.SubscriptionServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,7 +76,7 @@ public class SubscriptionTest {
 
         SubscriptionUpdateRequestDTO request = SubscriptionUpdateRequestDTO.builder()
                 .billingType(BillingType.PIX)
-                .status(StatusSubscription.INACTIVE)
+                .status(SubscriptionStatus.INACTIVE)
                 .nextDueDate("2024-11-12")
                 .build();
 

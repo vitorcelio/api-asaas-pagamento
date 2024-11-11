@@ -1,7 +1,7 @@
 package com.asaas.docs.dto.response;
 
 import com.asaas.docs.enums.CancellationReason;
-import com.asaas.docs.enums.StatusSplit;
+import com.asaas.docs.enums.SplitStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class SplitResponseDTO {
     private BigDecimal percentualValue;
     private BigDecimal totalValue;
     private CancellationReason cancellationReason;
-    private StatusSplit status;
+    private SplitStatus status;
     private String externalReference;
     private String description;
 

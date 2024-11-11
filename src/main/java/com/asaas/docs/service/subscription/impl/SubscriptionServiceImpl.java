@@ -7,9 +7,9 @@ import com.asaas.docs.dto.request.SubscriptionRequestDTO;
 import com.asaas.docs.dto.request.SubscriptionUpdateRequestDTO;
 import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
-import com.asaas.docs.enums.StatusSubscription;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
+import com.asaas.docs.enums.SubscriptionStatus;
 import com.asaas.docs.exception.AsaasApiException;
 import com.asaas.docs.service.subscription.SubscriptionService;
 import com.asaas.docs.util.AsaasUtil;
@@ -35,7 +35,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public SubscriptionsListResponseDTO subscriptionsList(Integer offset, Integer limit, String customer,
                                                           String customerGroupName, BillingType billingType,
-                                                          StatusSubscription status, Boolean deletedOnly,
+                                                          SubscriptionStatus status, Boolean deletedOnly,
                                                           Boolean includeDeleted, String externalReference,
                                                           String order, String sort) {
 
@@ -89,7 +89,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public PaymentsListResponseDTO paymentsListOfASubscription(@NonNull String id, StatusPayment status) {
+    public PaymentsListResponseDTO paymentsListOfASubscription(@NonNull String id, PaymentStatus status) {
 
         var query = status == null ? "" : "?status=" + status.name();
 
@@ -148,7 +148,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public DeleteResponseDTO deleteConfigurationForIssuingInvoice(@NonNull String id) {
 
         try {
-            String response = BaseClient.deleteRequest(String.format(AsaasUtil.DELETE_SUBSCRIPTION, id));
+            String response = BaseClient.deleteRequest(String.format(AsaasUtil.REMOVE_CONFIGURATION_FOR_ISSUING_INVOICES, id));
             return gson.fromJson(response, DeleteResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);
@@ -174,7 +174,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public InvoicesListResponseDTO invoicesForSubscriptionList(@NonNull String id, Integer offset, Integer limit,
                                                                String effectiveDateGe,
                                                                String effectiveDateLe, String externalReference,
-                                                               StatusInvoice status, String customer) {
+                                                               InvoiceStatus status, String customer) {
 
         var query = AsaasUtil.getParamsListInvoicesForSubscription(offset, limit, effectiveDateGe, effectiveDateLe,
                 externalReference, status, customer);

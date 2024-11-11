@@ -1,13 +1,12 @@
 package com.asaas.docs.dto.response;
 
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -26,7 +25,7 @@ public class PaymentResponseDTO {
     private BigDecimal value;
     private BigDecimal netValue;
     private BillingType billingType;
-    private StatusPayment status;
+    private PaymentStatus status;
     private String description;
     private int daysAfterDueDateToRegistrationCancellation;
     private String externalReference;

@@ -1,6 +1,6 @@
 package com.asaas.docs.enums;
 
-public enum StatusSubscription {
+public enum SubscriptionStatus {
 
     ACTIVE, EXPIRED, INACTIVE;
 

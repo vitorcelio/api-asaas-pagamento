@@ -6,9 +6,9 @@ import com.asaas.docs.dto.request.SubscriptionRequestDTO;
 import com.asaas.docs.dto.request.SubscriptionUpdateRequestDTO;
 import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
-import com.asaas.docs.enums.StatusSubscription;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
+import com.asaas.docs.enums.SubscriptionStatus;
 import lombok.NonNull;
 
 public interface SubscriptionService {
@@ -17,7 +17,7 @@ public interface SubscriptionService {
 
     SubscriptionsListResponseDTO subscriptionsList(Integer offset, Integer limit, String customer,
                                                    String customerGroupName, BillingType billingType,
-                                                   StatusSubscription status, Boolean deletedOnly,
+                                                   SubscriptionStatus status, Boolean deletedOnly,
                                                    Boolean includeDeleted, String externalReference, String order,
                                                    String sort);
 
@@ -27,7 +27,7 @@ public interface SubscriptionService {
 
     DeleteResponseDTO deleteSubscription(@NonNull String id);
 
-    PaymentsListResponseDTO paymentsListOfASubscription(@NonNull String id, StatusPayment status);
+    PaymentsListResponseDTO paymentsListOfASubscription(@NonNull String id, PaymentStatus status);
 
     String generateSubscriptionBooklet(@NonNull String id, @NonNull Integer month, @NonNull Integer year, String sort, String order);
 
@@ -44,6 +44,6 @@ public interface SubscriptionService {
     InvoicesListResponseDTO invoicesForSubscriptionList(@NonNull String id, Integer offset, Integer limit,
                                                         String effectiveDateGe,
                                                         String effectiveDateLe, String externalReference,
-                                                        StatusInvoice status, String customer);
+                                                        InvoiceStatus status, String customer);
 
 }

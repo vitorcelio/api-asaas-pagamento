@@ -2,7 +2,7 @@ package com.asaas.docs.dto.response;
 
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.CycleType;
-import com.asaas.docs.enums.StatusSubscription;
+import com.asaas.docs.enums.SubscriptionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class SubscriptionResponseDTO {
     private String nextDueDate;
     private String endDate;
     private String description;
-    private StatusSubscription status;
+    private SubscriptionStatus status;
     private DiscountResponseDTO discount;
     private FineResponseDTO fine;
     private InterestResponseDTO interest;

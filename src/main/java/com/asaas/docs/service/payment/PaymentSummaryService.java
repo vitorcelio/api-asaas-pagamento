@@ -7,8 +7,8 @@ import com.asaas.docs.dto.response.DeleteResponseDTO;
 import com.asaas.docs.dto.response.PaymentListSummaryResponseDTO;
 import com.asaas.docs.dto.response.PaymentSummaryResponseDTO;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
 import lombok.NonNull;
 
 public interface PaymentSummaryService {
@@ -16,13 +16,13 @@ public interface PaymentSummaryService {
     PaymentSummaryResponseDTO createSummaryPayment(@NonNull PaymentRequestDTO request);
 
     PaymentListSummaryResponseDTO summaryPaymentsList(String installment, Integer offset, Integer limit, String customer,
-                                                   String customerGroupName, BillingType billingType, StatusPayment status,
-                                                   String subscription, String externalReference, String paymentDate,
-                                                   StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
-                                                   Boolean anticipated, Boolean anticipable, String dateCreatedGe,
-                                                   String dateCreatedLe, String estimatedCreditDateGe,
-                                                   String estimatedCreditDateLe,
-                                                   String dueDataGe, String dueDateLe, String user);
+                                                      String customerGroupName, BillingType billingType, PaymentStatus status,
+                                                      String subscription, String externalReference, String paymentDate,
+                                                      InvoiceStatus invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
+                                                      Boolean anticipated, Boolean anticipable, String dateCreatedGe,
+                                                      String dateCreatedLe, String estimatedCreditDateGe,
+                                                      String estimatedCreditDateLe,
+                                                      String dueDataGe, String dueDateLe, String user);
 
     PaymentSummaryResponseDTO captureSummaryPaymentPreAuthorization(@NonNull String id);
 

@@ -7,8 +7,8 @@ import com.asaas.docs.dto.request.PaymentUpdateRequestDTO;
 import com.asaas.docs.dto.request.SalesSimulationRequestDTO;
 import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusInvoice;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.InvoiceStatus;
+import com.asaas.docs.enums.PaymentStatus;
 import lombok.NonNull;
 
 public interface PaymentService {
@@ -18,9 +18,9 @@ public interface PaymentService {
 
 
     PaymentsListResponseDTO paymentsList(String installment, Integer offset, Integer limit, String customer,
-                                         String customerGroupName, BillingType billingType, StatusPayment status,
+                                         String customerGroupName, BillingType billingType, PaymentStatus status,
                                          String subscription, String externalReference, String paymentDate,
-                                         StatusInvoice invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
+                                         InvoiceStatus invoiceStatus, String estimatedCreditDate, String pixQrCodeId,
                                          Boolean anticipated, Boolean anticipable, String dateCreatedGe,
                                          String dateCreatedLe, String estimatedCreditDateGe,
                                          String estimatedCreditDateLe,
@@ -48,7 +48,7 @@ public interface PaymentService {
 
     BankSlipResponseDTO getDigitableBillLines(@NonNull String id);
 
-    PixResponseDTO getQrCodePix(@NonNull String id);
+    PixPaymentResponseDTO getQrCodePix(@NonNull String id);
 
     PaymentResponseDTO confirmCashReceipt(@NonNull String id, @NonNull PaymentReceiptCashRequestDTO request);
 

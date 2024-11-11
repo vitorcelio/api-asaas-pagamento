@@ -2,13 +2,12 @@ package com.asaas.docs.dto.request;
 
 import com.asaas.docs.enums.BillingType;
 import com.asaas.docs.enums.CycleType;
-import com.asaas.docs.enums.StatusSubscription;
+import com.asaas.docs.enums.SubscriptionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -18,7 +17,7 @@ import java.util.List;
 public class SubscriptionUpdateRequestDTO {
 
     private BillingType billingType;
-    private StatusSubscription status;
+    private SubscriptionStatus status;
     private String nextDueDate;
     private DiscountRequestDTO discount;
     private InterestRequestDTO interest;

@@ -1,6 +1,6 @@
 package com.asaas.docs.enums;
 
-public enum StatusChargeback {
+public enum ChargebackStatus {
 
     REQUESTED, IN_DISPUTE, DISPUTE_LOST, REVERSED, DONE;
 

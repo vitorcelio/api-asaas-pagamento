@@ -1,6 +1,6 @@
 package com.asaas.docs.dto.response;
 
-import com.asaas.docs.enums.StatusRefunds;
+import com.asaas.docs.enums.RefundsStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.Date;
 public class RefundsResponseDTO {
 
     private Date dateCreated;
-    private StatusRefunds status;
+    private RefundsStatus status;
     private BigDecimal value;
     private String description;
     private String transactionReceiptUrl;

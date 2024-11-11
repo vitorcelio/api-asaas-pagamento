@@ -4,7 +4,7 @@ import com.asaas.docs.configuration.AsaasApiConfig;
 import com.asaas.docs.dto.request.*;
 import com.asaas.docs.dto.response.*;
 import com.asaas.docs.enums.BillingType;
-import com.asaas.docs.enums.StatusPayment;
+import com.asaas.docs.enums.PaymentStatus;
 import com.asaas.docs.service.payment.impl.PaymentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -141,7 +141,7 @@ public class PaymentTest {
         PaymentBillingInfoResponseDTO response = paymentService.retrievePaymentBillingInfo("pay_4z074yvxh6r71tr3");
 
         assertEquals(PaymentBillingInfoResponseDTO.class, response.getClass());
-        assertEquals(PixResponseDTO.class, response.getPix().getClass());
+        assertEquals(PixPaymentResponseDTO.class, response.getPix().getClass());
         assertNotEquals(null, response);
         assertNotEquals(null, response.getPix());
     }
@@ -205,7 +205,7 @@ public class PaymentTest {
 
         assertEquals(PaymentStatusResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
-        assertEquals(StatusPayment.PENDING, response.getStatus());
+        assertEquals(PaymentStatus.PENDING, response.getStatus());
     }
 
     @Test
@@ -232,9 +232,9 @@ public class PaymentTest {
 
     @Test
     public void testGetQrCodePix_Success() {
-        PixResponseDTO response = paymentService.getQrCodePix("pay_i63qmal7yf3f47qq");
+        PixPaymentResponseDTO response = paymentService.getQrCodePix("pay_i63qmal7yf3f47qq");
 
-        assertEquals(PixResponseDTO.class, response.getClass());
+        assertEquals(PixPaymentResponseDTO.class, response.getClass());
         assertNotEquals(null, response);
     }
 
