@@ -1,4 +1,4 @@
-package com.asaas.docs.service.installment;
+package com.asaas.docs.service.installments;
 
 import com.asaas.docs.configuration.AsaasApiConfig;
 import com.asaas.docs.dto.request.InstallmentRequestDTO;

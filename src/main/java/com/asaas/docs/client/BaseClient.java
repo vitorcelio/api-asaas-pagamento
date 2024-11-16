@@ -173,9 +173,15 @@ public class BaseClient {
                 throw new AsaasApiException("Erro 401: Não Autorizado na API da Asaas Pagamento (Verifique se sua API_KEY está inserida corretamente ou se está expirada).");
             }
 
-            AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
-            if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
-                throw new AsaasApiException(errorResponse);
+            String body = response.body();
+
+            if (body != null && body.contains("errors")) {
+                AsaasErrorResponse errorResponse = gson.fromJson(response.body(), AsaasErrorResponse.class);
+                if (!AsaasUtil.isEmpty(errorResponse.getErrors())) {
+                    throw new AsaasApiException(errorResponse);
+                }
+            } else {
+                throw new AsaasApiException("Erro interno na API da Asaas Pagamento: \n\n" + body);
             }
         }
     }

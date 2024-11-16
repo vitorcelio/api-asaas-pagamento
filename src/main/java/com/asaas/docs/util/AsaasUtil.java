@@ -2,6 +2,7 @@ package com.asaas.docs.util;
 
 import com.asaas.docs.enums.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 public class AsaasUtil {
@@ -109,6 +110,30 @@ public class AsaasUtil {
     public static final String GET_TRANSACTION = "pix/transactions/%s";
     public static final String LIST_TRANSACTIONS = "pix/transactions";
     public static final String CANCEL_SCHEDULED_TRANSACTION = "pix/transactions/%s/cancel";
+
+    // ==========| RECURRENCE |===========
+    public static final String LIST_RECURRENCES = "pix/transactions/recurrings";
+    public static final String GET_RECURRENCE = "pix/transactions/recurrings/%s";
+    public static final String CANCEL_RECURRENCE = "pix/transactions/recurrings/%s/cancel";
+    public static final String LIST_RECURRENCE_ITEMS = "pix/transactions/recurrings/%s/items";
+    public static final String CANCEL_RECURRENCE_ITEMS = "pix/transactions/recurrings/items/%s/cancel";
+
+    // ==========| TRANSFER |==========
+    public static final String TRANSFER_ANOTHER_INSTITUTION_OR_PIX = "transfers";
+    public static final String LIST_TRANSFERS = "transfers";
+    public static final String TRANSFER_ASAAS_ACCOUNT = "transfers/";
+    public static final String GET_TRANSFER = "transfers/%s";
+    public static final String CANCEL_TRANSFER = "transfers/%s/cancel";
+
+    // ==========| BILL |==========
+    public static final String CREATE_BILL_PAYMENT = "bill";
+    public static final String LIST_BILL_PAYMENTS = "bill";
+    public static final String SIMULATE_BILL_PAYMENT = "bill/simulate";
+    public static final String GET_BILL_PAYMENT = "bill/%s";
+    public static final String CANCEL_BILL_PAYMENT = "bill/%s/cancel";
+
+    // ==========| EXTRACT |==========
+    public static final String GET_EXTRACT = "financialTransactions";
 
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
@@ -423,7 +448,7 @@ public class AsaasUtil {
         return params.toString();
     }
 
-    public static String getParamsListInstallment(Integer offset, Integer limit) {
+    public static String getParamsListBase(Integer offset, Integer limit) {
         StringBuilder params = new StringBuilder();
 
         if (offset != null) {
@@ -728,6 +753,132 @@ public class AsaasUtil {
                 params.append("?endToEndIdentifier=").append(endToEndIdentifier);
             } else {
                 params.append("&endToEndIdentifier=").append(endToEndIdentifier);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListRecurrences(Integer offset, Integer limit, RecurrenceStatus status, BigDecimal value, String searchText) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (status != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?status=").append(status.name());
+            } else {
+                params.append("&status=").append(status.name());
+            }
+        }
+
+        if (value != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?value=").append(value);
+            } else {
+                params.append("&value=").append(value);
+            }
+        }
+
+        if (!isEmpty(searchText)) {
+            if (isEmpty(params.toString())) {
+                params.append("?searchText=").append(searchText);
+            } else {
+                params.append("&searchText=").append(searchText);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListTransfers(String dateCreatedGe, String dateCreatedLe, String transferDateGe, String transferDateLe, AccountTransferType type) {
+        StringBuilder params = new StringBuilder();
+
+        if (!isEmpty(dateCreatedGe)) {
+            params.append("?dateCreatedLe[ge]=").append(dateCreatedGe);
+        }
+
+        if (!isEmpty(dateCreatedLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?dateCreatedLe[le]=").append(dateCreatedLe);
+            } else {
+                params.append("&dateCreatedLe[le]=").append(dateCreatedLe);
+            }
+        }
+
+        if (!isEmpty(transferDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?transferDate[ge]=").append(transferDateGe);
+            } else {
+                params.append("&transferDate[ge]=").append(transferDateGe);
+            }
+        }
+
+        if (!isEmpty(transferDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?transferDate[le]=").append(transferDateLe);
+            } else {
+                params.append("&transferDate[le]=").append(transferDateLe);
+            }
+        }
+
+        if (type != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?type=").append(type.name());
+            } else {
+                params.append("&type=").append(type.name());
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListExtract(Integer offset, Integer limit, String startDate, String finishDate, String order) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (!isEmpty(startDate)) {
+            if (isEmpty(params.toString())) {
+                params.append("?startDate=").append(startDate);
+            } else {
+                params.append("&startDate=").append(startDate);
+            }
+        }
+
+        if (!isEmpty(finishDate)) {
+            if (isEmpty(params.toString())) {
+                params.append("?finishDate=").append(finishDate);
+            } else {
+                params.append("&finishDate=").append(finishDate);
+            }
+        }
+
+        if (!isEmpty(order)) {
+            if (isEmpty(params.toString())) {
+                params.append("?order=").append(order);
+            } else {
+                params.append("&order=").append(order);
             }
         }
 

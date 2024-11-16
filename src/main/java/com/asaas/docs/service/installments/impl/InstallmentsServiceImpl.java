@@ -15,7 +15,7 @@ import com.asaas.docs.util.AsaasUtil;
 import com.google.gson.Gson;
 import lombok.NonNull;
 
-import static com.asaas.docs.util.AsaasUtil.getParamsListInstallment;
+import static com.asaas.docs.util.AsaasUtil.getParamsListBase;
 
 public class InstallmentsServiceImpl implements InstallmentsService {
 
@@ -36,7 +36,7 @@ public class InstallmentsServiceImpl implements InstallmentsService {
     @Override
     public InstallmentListResponseDTO installmentList(Integer offset, Integer limit) {
 
-        var query = getParamsListInstallment(offset, limit);
+        var query = getParamsListBase(offset, limit);
 
         try {
             String response = BaseClient.getRequest(AsaasUtil.LIST_INSTALLMENTS, query);

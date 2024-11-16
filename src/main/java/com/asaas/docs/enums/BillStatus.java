@@ -1,0 +1,7 @@
+package com.asaas.docs.enums;
+
+public enum BillStatus {
+
+    PENDING, BANK_PROCESSING, PAID, FAILED, CANCELLED, REFUNDED, AWAITING_CHECKOUT_RISK_ANALYSIS_REQUEST
+
+}
