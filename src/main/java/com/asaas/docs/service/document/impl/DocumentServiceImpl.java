@@ -23,7 +23,7 @@ public class DocumentServiceImpl implements DocumentService {
 
         try {
             gson = new GsonBuilder().enableComplexMapKeySerialization().create();
-            String response = BaseClient.postRequestMultipartFormData(String.format(AsaasUtil.UPLOAD_DOCUMENT_PAYMENT, id), gson.toJson(request), path);
+            String response = BaseClient.postRequestMultipartFormData(String.format(AsaasUtil.UPLOAD_DOCUMENT_PAYMENT, id), gson.toJson(request), path, "file", DocumentRequestDTO.class);
             return gson.fromJson(response, DocumentResponseDTO.class);
         } catch (Exception e) {
             throw new AsaasApiException(e);

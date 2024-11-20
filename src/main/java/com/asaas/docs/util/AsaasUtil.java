@@ -135,6 +135,34 @@ public class AsaasUtil {
     // ==========| EXTRACT |==========
     public static final String GET_EXTRACT = "financialTransactions";
 
+    // ==========| FINANCE |==========
+    public static final String GET_BALANCE = "finance/balance";
+    public static final String COLLECTIONS_STATISTICS = "finance/payment/statistics";
+    public static final String GET_SPLIT_VALUES = "finance/split/statistics";
+
+    // ==========| ACCOUNT INFO |==========
+    public static final String GET_BUSINESS_DATA = "myAccount/commercialInfo/";
+    public static final String UPDATE_BUSINESS_DATA = "myAccount/commercialInfo/";
+    public static final String PAYMENT_CHECKOUT_CONFIG = "myAccount/paymentCheckoutConfig/";
+    public static final String GET_PAYMENT_CHECKOUT_CONFIG = "myAccount/paymentCheckoutConfig/";
+    public static final String GET_ASAAS_ACCOUNT_NUMBER = "myAccount/accountNumber";
+    public static final String GET_ACCOUNT_FEES = "myAccount/fees";
+    public static final String CHECK_ACCOUNT_REGISTRATION_STATUS = "myAccount/status";
+    public static final String GET_WALLET_ID = "wallets/";
+    public static final String DELETE_WHITE_LABEL_SUB_ACCOUNT = "myAccount/";
+
+    // ==========| WEBHOOK |==========
+    public static final String CREATE_WEBHOOK = "webhooks";
+    public static final String LIST_WEBHOOK = "webhooks";
+    public static final String GET_WEBHOOK = "webhooks/%s";
+    public static final String UPDATE_WEBHOOK = "webhooks/%s";
+    public static final String DELETE_WEBHOOK = "webhooks/%s";
+
+    // ==========| SUBACCOUNT |==========
+    public static final String CREATE_SUBACCOUNT = "accounts";
+    public static final String LIST_SUBACCOUNT = "accounts";
+    public static final String GET_SUBACCOUNT = "accounts/%s";
+
     public static String getParamsListPayment(String installment, Integer offset, Integer limit, String customer,
                                               String customerGroupName, BillingType billingType,
                                               PaymentStatus status, String subscription, String externalReference,
@@ -879,6 +907,143 @@ public class AsaasUtil {
                 params.append("?order=").append(order);
             } else {
                 params.append("&order=").append(order);
+            }
+        }
+
+        return params.toString();
+    }
+
+    public static String getParamsListStatistics(String customer, BillingType billingType, Boolean anticipated,
+                                                 String dateCreatedGe, String dateCreatedLe, String dueDateGe,
+                                                 String dueDateLe, String estimatedCreditDateGe,
+                                                 String estimatedCreditDateLe, String externalReference) {
+        StringBuilder params = new StringBuilder();
+
+        if (!isEmpty(customer)) {
+            params.append("?customer=").append(customer);
+        }
+
+        if (billingType != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?billingType=").append(billingType.name());
+            } else {
+                params.append("&billingType=").append(billingType.name());
+            }
+        }
+
+        if (anticipated != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?anticipated=").append(anticipated);
+            } else {
+                params.append("&anticipated=").append(anticipated);
+            }
+        }
+
+        if (!isEmpty(dateCreatedGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?dateCreated[ge]=").append(dateCreatedGe);
+            } else {
+                params.append("&dateCreated[ge]=").append(dateCreatedGe);
+            }
+        }
+
+        if (!isEmpty(dateCreatedLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?dateCreated[le]=").append(dateCreatedLe);
+            } else {
+                params.append("&dateCreated[le]=").append(dateCreatedLe);
+            }
+        }
+
+        if (!isEmpty(dueDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?dueDate[ge]=").append(dueDateGe);
+            } else {
+                params.append("&dueDate[ge]=").append(dueDateGe);
+            }
+        }
+
+        if (!isEmpty(dueDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?dueDate[le]=").append(dueDateLe);
+            } else {
+                params.append("&dueDate[le]=").append(dueDateLe);
+            }
+        }
+
+        if (!isEmpty(estimatedCreditDateGe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?estimatedCreditDate[ge]=").append(estimatedCreditDateGe);
+            } else {
+                params.append("&estimatedCreditDate[ge]=").append(estimatedCreditDateGe);
+            }
+        }
+
+        if (!isEmpty(estimatedCreditDateLe)) {
+            if (isEmpty(params.toString())) {
+                params.append("?estimatedCreditDate[le]=").append(estimatedCreditDateLe);
+            } else {
+                params.append("&estimatedCreditDate[le]=").append(estimatedCreditDateLe);
+            }
+        }
+
+        if (!isEmpty(externalReference)) {
+            if (isEmpty(params.toString())) {
+                params.append("?externalReference=").append(externalReference);
+            } else {
+                params.append("&externalReference=").append(externalReference);
+            }
+        }
+
+        return params.toString();
+    }
+
+
+    public static String getParamsListSubaccounts(Integer offset, Integer limit, String cpfCnpj, String email,
+                                                  String name, String walletId) {
+        StringBuilder params = new StringBuilder();
+
+        if (offset != null) {
+            params.append("?offset=").append(offset);
+        }
+
+        if (limit != null) {
+            if (isEmpty(params.toString())) {
+                params.append("?limit=").append(limit);
+            } else {
+                params.append("&limit=").append(limit);
+            }
+        }
+
+        if (!isEmpty(cpfCnpj)) {
+            if (isEmpty(params.toString())) {
+                params.append("?cpfCnpj=").append(cpfCnpj);
+            } else {
+                params.append("&cpfCnpj=").append(cpfCnpj);
+            }
+        }
+
+        if (!isEmpty(email)) {
+            if (isEmpty(params.toString())) {
+                params.append("?email=").append(email);
+            } else {
+                params.append("&email=").append(email);
+            }
+        }
+
+        if (!isEmpty(name)) {
+            if (isEmpty(params.toString())) {
+                params.append("?name=").append(name);
+            } else {
+                params.append("&name=").append(name);
+            }
+        }
+
+        if (!isEmpty(walletId)) {
+            if (isEmpty(params.toString())) {
+                params.append("?walletId=").append(walletId);
+            } else {
+                params.append("&walletId=").append(walletId);
             }
         }
 

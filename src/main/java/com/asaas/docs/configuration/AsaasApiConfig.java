@@ -17,13 +17,13 @@ public class AsaasApiConfig {
     @Setter
     private static boolean isSandbox = true;
 
-    @Setter
     @Getter
+    @Setter
     @NonNull
     private static String apiKey;
 
     public static String BASE_URL() {
-        return String.format(isSandbox ? domainSandbox : domain, version.getVersao());
+        return String.format(isSandbox ? domainSandbox : domain, version.getVersion());
     }
 
     // Constante Usada para testes

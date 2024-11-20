@@ -32,7 +32,7 @@ public class DocumentTest {
     @Test
     public void testUploadDocumentPayment_Success() {
 
-        File file = new File("C:/Users/celio/Pictures/capa-pc.png");
+        File file = new File("C:/Users/celio/Pictures/capa-pc3.png");
 
         Path path = file.toPath();
 

@@ -31,11 +31,12 @@ public class AsaasApiException extends RuntimeException {
             List<String> erros = errorResponse.getErrors().stream().map(errorDTO -> String.format("[%s] - %s",
                     errorDTO.getCode(), errorDTO.getDescription())).toList();
             StringBuilder message = new StringBuilder();
+            message.append("\n");
             erros.forEach(e -> {
                 message.append(e);
 
-                if (erros.indexOf(e) > (erros.size() - 1)) {
-                    message.append(", ");
+                if (erros.indexOf(e) < (erros.size() - 1)) {
+                    message.append(", \n");
                 }
             });
 
